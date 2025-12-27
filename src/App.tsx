@@ -238,20 +238,20 @@ function App() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto sm:mx-0">
             {/* Main Content Card */}
-            <div className="bg-white/20 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/30 transform perspective-1000 hover:shadow-3xl transition-all duration-500">
-              <div className="space-y-6">
-                <div className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full w-fit">
-                  <MapPin className="h-5 w-5 text-[#fd8607]" />
-                  <span className="font-semibold text-[#fd8607]">Merano, Alto Adige</span>
+            <div className="bg-white/20 backdrop-blur-xl p-5 sm:p-8 md:p-12 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl border border-white/30 transform perspective-1000 hover:shadow-3xl transition-all duration-500">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full w-fit">
+                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-[#fd8607]" />
+                  <span className="text-sm sm:text-base font-semibold text-[#fd8607]">Merano, Alto Adige</span>
                 </div>
                 
-                <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
-                  Il tuo appartamento ideale<br />
-                  <span className="text-[#5a678f]">nel cuore di Merano</span>
+                <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
+                  Il tuo appartamento ideale<br className="hidden sm:block" />
+                  <span className="sm:hidden"> </span><span className="text-[#5a678f]">nel cuore di Merano</span>
                 </h1>
                 
-                <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
-                  Appartamento elegante e confortevole a soli 200 metri dalle famose Terme di Merano. Lo spazio perfetto per una fuga rilassante in Alto Adige, con tutto il necessario per sentirsi a casa.
+                <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+                  Appartamento elegante e confortevole a soli 200 metri dalle Terme di Merano. Perfetto per una fuga rilassante in Alto Adige.
                 </p>
 
                 {/* CTA Buttons */}
@@ -281,13 +281,13 @@ function App() {
       <section id="lappartamento" className="py-12 sm:py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#4d4d4d] mb-4">L'Appartamento</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto"></div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4d4d4d] mb-4">L'Appartamento</h2>
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <div className="space-y-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#4d4d4d] mb-4 sm:mb-6">Casa Vitter</h3>
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+            <div className="space-y-4 sm:space-y-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#4d4d4d] mb-3 sm:mb-4 md:mb-6">Casa Vitter</h3>
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                 Casa Vitter è un silenzioso bilocale situato nel cuore di Merano, a soli 200 metri dalle 
                 rinomate Terme di Merano e a pochi passi dal centro storico. Una posizione privilegiata che 
@@ -348,9 +348,9 @@ function App() {
       <section id="caratteristiche" className="py-12 sm:py-20 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">Caratteristiche dell'appartamento</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-6"></div>
-            <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4 px-4">Caratteristiche</h2>
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
               Tutto ciò che serve per un soggiorno confortevole nel cuore di Merano
             </p>
           </div>
@@ -385,9 +385,9 @@ function App() {
       <section id="foto" className="py-12 sm:py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">L'appartamento</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-6"></div>
-            <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">Foto</h2>
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
               Scopri gli spazi di Casa Vitter nel cuore di Merano
             </p>
           </div>
@@ -434,10 +434,10 @@ function App() {
       <section id="recensioni" className="py-12 sm:py-20 bg-[#3f486e] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Cosa dicono i nostri clienti</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#5a678f] to-[#fd8607] mx-auto mb-6"></div>
-            <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto">
-              La soddisfazione dei nostri clienti è la nostra migliore referenza
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 px-4">Recensioni</h2>
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#5a678f] to-[#fd8607] mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4">
+              La soddisfazione dei nostri ospiti è la nostra migliore referenza
             </p>
           </div>
 
@@ -475,9 +475,10 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">Contattaci</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-6"></div>
-            <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
               Per informazioni su disponibilità e prenotazioni, contattaci
+            </p>
             </p>
           </div>
 
