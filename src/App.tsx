@@ -245,7 +245,7 @@ function App() {
                   <span className="text-sm sm:text-base font-semibold text-[#fd8607]">Merano, Alto Adige</span>
                 </div>
                 
-                <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
+                <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
                   Il tuo appartamento ideale<br className="hidden sm:block" />
                   <span className="sm:hidden"> </span><span className="text-[#5a678f]">nel cuore di Merano</span>
                 </h1>
@@ -303,14 +303,14 @@ function App() {
                 inclusi garage privato (a 60m), biancheria da letto, da bagno e per la cucina. Lo spazio è 
                 completamente indipendente e a vostra disposizione.
               </p>
-              <div className="flex flex-wrap gap-2 sm:gap-3 pt-4">
-                <div className="bg-[#3f486e] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#5a678f] transition-colors duration-300">
+              <div className="flex flex-nowrap gap-2 sm:gap-3 pt-4 overflow-x-auto">
+                <div className="bg-[#3f486e] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#5a678f] transition-colors duration-300 whitespace-nowrap">
                   <span className="font-semibold text-sm sm:text-base">Posizione centrale</span>
                 </div>
-                <div className="bg-[#5a678f] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#3f486e] transition-colors duration-300">
+                <div className="bg-[#5a678f] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#3f486e] transition-colors duration-300 whitespace-nowrap">
                   <span className="font-semibold text-sm sm:text-base">Garage incluso</span>
                 </div>
-                <div className="bg-[#fd8607] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-orange-600 transition-colors duration-300">
+                <div className="bg-[#fd8607] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-orange-600 transition-colors duration-300 whitespace-nowrap">
                   <span className="font-semibold text-sm sm:text-base">Tutto incluso</span>
                 </div>
               </div>
