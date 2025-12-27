@@ -479,7 +479,6 @@ function App() {
             <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
               Per informazioni su disponibilità e prenotazioni, contattaci
             </p>
-            </p>
           </div>
 
           {/* Informazioni di Contatto */}
