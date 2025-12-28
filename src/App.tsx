@@ -519,7 +519,7 @@ function App() {
                   <div>
                     <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">Ubicazione</h4>
                     <address className="text-gray-600 not-italic text-sm sm:text-base font-medium">
-                      Centro di Merano (BZ), a 200m dalle Terme
+                      Via Leopardi 7, 39012 Merano (BZ)
                     </address>
                   </div>
                 </div>
@@ -647,8 +647,8 @@ function App() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-[#5a678f] mt-1" />
                 <address className="text-gray-300 not-italic text-sm">
-                  Centro di Merano (BZ)<br />
-                  200m dalle Terme
+                  Via Leopardi 7<br />
+                  39012 Merano (BZ)
                 </address>
               </div>
             </div>
