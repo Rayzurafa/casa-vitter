@@ -660,7 +660,7 @@ function App() {
                 <p>• 2-4 persone</p>
                 <p>• Garage incluso</p>
                 <p>• Biancheria inclusa</p>
-                <p>CIR: IT021051B4MKWBY5TU</p>
+                <p>CIN: IT021051B4MKWBY5TU</p>
               </div>
             </div>
           </div>
@@ -673,7 +673,7 @@ function App() {
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                 <p className="text-xs text-gray-500 text-center md:text-right">
-                  Bilocale a Merano - CIR: IT021051B4MKWBY5TU
+                  Bilocale a Merano - CIN: IT021051B4MKWBY5TU
                 </p>
                 <button
                   onClick={() => setShowPrivacyPolicy(true)}
