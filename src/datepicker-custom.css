@@ -1,0 +1,119 @@
+/* Custom DatePicker Styles for Casa Vitter */
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker {
+  font-family: inherit;
+  border: 2px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(63, 72, 110, 0.15);
+}
+
+.react-datepicker__header {
+  background: linear-gradient(135deg, #3f486e 0%, #5a678f 100%);
+  border-bottom: none;
+  border-top-left-radius: 0.875rem;
+  border-top-right-radius: 0.875rem;
+  padding: 1rem 0.5rem;
+}
+
+.react-datepicker__current-month {
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.react-datepicker__day-name {
+  color: white;
+  font-weight: 600;
+  width: 2.5rem;
+  line-height: 2.5rem;
+  margin: 0.166rem;
+}
+
+.react-datepicker__day {
+  width: 2.5rem;
+  line-height: 2.5rem;
+  margin: 0.166rem;
+  border-radius: 0.5rem;
+  color: #4d4d4d;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.react-datepicker__day:hover {
+  background-color: #5a678f;
+  color: white;
+  transform: scale(1.05);
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background: linear-gradient(135deg, #3f486e 0%, #5a678f 100%);
+  color: white;
+  font-weight: 700;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #fd8607;
+  color: white;
+}
+
+.react-datepicker__day--disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.react-datepicker__day--disabled:hover {
+  background-color: transparent;
+  transform: none;
+}
+
+.react-datepicker__day--today {
+  font-weight: 700;
+  color: #fd8607;
+  border: 2px solid #fd8607;
+}
+
+.react-datepicker__day--today.react-datepicker__day--selected {
+  border: 2px solid white;
+}
+
+.react-datepicker__navigation {
+  top: 1.25rem;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: white;
+  border-width: 2px 2px 0 0;
+}
+
+.react-datepicker__navigation:hover *::before {
+  border-color: #fd8607;
+}
+
+.react-datepicker__month {
+  margin: 0.75rem;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .react-datepicker {
+    font-size: 0.875rem;
+  }
+  
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    width: 2rem;
+    line-height: 2rem;
+    margin: 0.125rem;
+  }
+}

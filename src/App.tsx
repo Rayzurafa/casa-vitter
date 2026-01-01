@@ -22,6 +22,11 @@ import {
   Minus,
   Calendar
 } from 'lucide-react';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import { it } from 'date-fns/locale';
+import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('it', it);
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,8 +35,8 @@ function App() {
   
   // Booking form states
   const [bookingStep, setBookingStep] = useState(1);
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  const [checkIn, setCheckIn] = useState<Date | null>(null);
+  const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [adulti, setAdulti] = useState(2);
   const [bambini, setBambini] = useState(0);
   const [neonati, setNeonati] = useState(0);
@@ -517,8 +522,8 @@ function App() {
                   </div>
                   <div>
                     <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">Email</h4>
-                    <a href="mailto:info@casavitter.com" className="text-gray-600 hover:text-[#3f486e] transition-colors duration-300 text-sm sm:text-base font-medium break-all">
-                      info@casavitter.com
+                    <a href="mailto:casavittermerano@gmail.com" className="text-gray-600 hover:text-[#3f486e] transition-colors duration-300 text-sm sm:text-base font-medium break-all">
+                      casavittermerano@gmail.com
                     </a>
                   </div>
                 </div>
@@ -567,7 +572,7 @@ function App() {
                     <span>Chiama ora</span>
                   </a>
                   <a
-                    href="mailto:info@casavitter.com"
+                    href="mailto:casavittermerano@gmail.com"
                     className="group bg-white/20 hover:bg-white/30 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm border border-white/30 hover:border-white/50 inline-flex items-center justify-center space-x-2 text-white text-sm sm:text-base"
                   >
                     <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
@@ -652,15 +657,19 @@ function App() {
                         <Calendar className="h-4 w-4 text-[#3f486e]" />
                         <span>Data Check-in *</span>
                       </label>
-                      <input
-                        type="date"
-                        id="checkin"
-                        name="checkin"
-                        value={checkIn}
-                        onChange={(e) => setCheckIn(e.target.value)}
-                        required
-                        min={new Date().toISOString().split('T')[0]}
+                      <DatePicker
+                        selected={checkIn}
+                        onChange={(date) => setCheckIn(date)}
+                        selectsStart
+                        startDate={checkIn}
+                        endDate={checkOut}
+                        minDate={new Date()}
+                        locale="it"
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Seleziona data"
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                        wrapperClassName="w-full"
+                        calendarClassName="custom-datepicker"
                       />
                     </div>
                     <div>
@@ -668,15 +677,19 @@ function App() {
                         <Calendar className="h-4 w-4 text-[#3f486e]" />
                         <span>Data Check-out *</span>
                       </label>
-                      <input
-                        type="date"
-                        id="checkout"
-                        name="checkout"
-                        value={checkOut}
-                        onChange={(e) => setCheckOut(e.target.value)}
-                        required
-                        min={checkIn || new Date().toISOString().split('T')[0]}
+                      <DatePicker
+                        selected={checkOut}
+                        onChange={(date) => setCheckOut(date)}
+                        selectsEnd
+                        startDate={checkIn}
+                        endDate={checkOut}
+                        minDate={checkIn || new Date()}
+                        locale="it"
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Seleziona data"
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                        wrapperClassName="w-full"
+                        calendarClassName="custom-datepicker"
                       />
                     </div>
                   </div>
@@ -796,16 +809,16 @@ function App() {
                     
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Check-in:</span>
-                      <span className="font-semibold text-[#4d4d4d]">{new Date(checkIn).toLocaleDateString('it-IT')}</span>
+                      <span className="font-semibold text-[#4d4d4d]">{checkIn?.toLocaleDateString('it-IT')}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Check-out:</span>
-                      <span className="font-semibold text-[#4d4d4d]">{new Date(checkOut).toLocaleDateString('it-IT')}</span>
+                      <span className="font-semibold text-[#4d4d4d]">{checkOut?.toLocaleDateString('it-IT')}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Notti:</span>
                       <span className="font-semibold text-[#4d4d4d]">
-                        {Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))}
+                        {checkIn && checkOut ? Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)) : 0}
                       </span>
                     </div>
                     
@@ -813,14 +826,14 @@ function App() {
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Adulti ({adulti} × 60€)</span>
                         <span className="font-semibold text-[#4d4d4d]">
-                          {(adulti * 60 * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                          {checkIn && checkOut ? (adulti * 60 * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
                         </span>
                       </div>
                       {bambini > 0 && (
                         <div className="flex justify-between text-sm mt-2">
                           <span className="text-gray-600">Bambini ({bambini} × 30€)</span>
                           <span className="font-semibold text-[#4d4d4d]">
-                            {(bambini * 30 * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                            {checkIn && checkOut ? (bambini * 30 * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
                           </span>
                         </div>
                       )}
@@ -828,7 +841,7 @@ function App() {
                         <div className="flex justify-between text-sm mt-2">
                           <span className="text-gray-600">Neonati ({neonati} × 10€)</span>
                           <span className="font-semibold text-[#4d4d4d]">
-                            {(neonati * 10 * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                            {checkIn && checkOut ? (neonati * 10 * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
                           </span>
                         </div>
                       )}
@@ -838,7 +851,7 @@ function App() {
                       <div className="flex justify-between">
                         <span className="text-lg font-bold text-[#4d4d4d]">Totale:</span>
                         <span className="text-2xl font-bold text-[#3f486e]">
-                          {((adulti * 60 + bambini * 30 + neonati * 10) * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                          {checkIn && checkOut ? ((adulti * 60 + bambini * 30 + neonati * 10) * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
                         </span>
                       </div>
                     </div>
@@ -957,8 +970,8 @@ function App() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-[#5a678f]" />
-                  <a href="mailto:info@casavitter.com" className="text-gray-300 hover:text-white transition-colors duration-300 text-xs sm:text-sm break-all">
-                    info@casavitter.com
+                  <a href="mailto:casavittermerano@gmail.com" className="text-gray-300 hover:text-white transition-colors duration-300 text-xs sm:text-sm break-all">
+                    casavittermerano@gmail.com
                   </a>
                 </div>
               </div>
@@ -1056,7 +1069,7 @@ function App() {
                 <p className="font-semibold mb-2">Contatti:</p>
                 <ul className="list-none space-y-1 ml-4">
                   <li>Telefono: +39 333 210 9899</li>
-                  <li>Email: info@casavitter.com</li>
+                  <li>Email: casavittermerano@gmail.com</li>
                 </ul>
               </section>
 
@@ -1114,7 +1127,7 @@ function App() {
                   <li>proporre reclamo all'Autorità Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" className="text-[#3f486e] hover:underline">www.garanteprivacy.it</a>).</li>
                 </ul>
                 <p>
-                  Per esercitare tali diritti, è possibile inviare una richiesta a: <a href="mailto:info@casavitter.com" className="text-[#3f486e] hover:underline">info@casavitter.com</a>.
+                  Per esercitare tali diritti, è possibile inviare una richiesta a: <a href="mailto:casavittermerano@gmail.com" className="text-[#3f486e] hover:underline">casavittermerano@gmail.com</a>.
                 </p>
               </section>
 

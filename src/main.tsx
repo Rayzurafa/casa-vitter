@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import PrivacyPolicy from './PrivacyPolicy.tsx';
 import './index.css';
+import './datepicker-custom.css';
 
 const path = window.location.pathname;
 
