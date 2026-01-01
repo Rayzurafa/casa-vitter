@@ -170,7 +170,7 @@ function App() {
 
             {/* Desktop Navigation - Centered */}
             <nav className="hidden md:flex space-x-8 flex-1 justify-center">
-              {['Home', 'L\'Appartamento', 'Caratteristiche', 'Foto', 'Recensioni', 'Contatti'].map((item, index) => (
+              {['Home', 'L\'Appartamento', 'Caratteristiche', 'Foto', 'Recensioni', 'Prenota'].map((item, index) => (
                 <a 
                   key={index}
                   href={`#${item.toLowerCase().replace(/'/g, '').replace(' ', '-')}`} 
@@ -185,7 +185,7 @@ function App() {
             {/* CTA Button - Desktop */}
             <div className="hidden md:block">
               <a 
-                href="tel:+393332109899" 
+                href="#prenota" 
                 className="group bg-[#3f486e] hover:bg-[#5a678f] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center space-x-2"
               >
                 <Phone className="h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
@@ -206,7 +206,7 @@ function App() {
           {isMenuOpen && (
             <div className="md:hidden pb-4 border-t border-gray-200 animate-in slide-in-from-top duration-300">
               <nav className="flex flex-col space-y-2 pt-4">
-                {['Home', 'L\'Appartamento', 'Caratteristiche', 'Foto', 'Recensioni', 'Contatti'].map((item, index) => (
+                {['Home', 'L\'Appartamento', 'Caratteristiche', 'Foto', 'Recensioni', 'Prenota'].map((item, index) => (
                   <a 
                     key={index}
                     href={`#${item.toLowerCase().replace(/'/g, '').replace(' ', '-')}`} 
@@ -602,6 +602,125 @@ function App() {
                 className="w-full"
               ></iframe>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sezione Prenota */}
+      <section id="prenota" className="py-12 sm:py-20 bg-gradient-to-br from-[#3f486e] to-[#5a678f] scroll-mt-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Prenota il Tuo Soggiorno</h2>
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#fd8607] to-white mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4">
+              Compila il form per richiedere la disponibilità per le tue date
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10">
+            <form className="space-y-6">
+              {/* Nome */}
+              <div>
+                <label htmlFor="nome" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                  Nome e Cognome *
+                </label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                  placeholder="Mario Rossi"
+                />
+              </div>
+
+              {/* Email e Telefono */}
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                    placeholder="mario.rossi@email.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="telefono" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                    Telefono *
+                  </label>
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                    placeholder="+39 333 123 4567"
+                  />
+                </div>
+              </div>
+
+              {/* Date Check-in e Check-out */}
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <label htmlFor="checkin" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                    Data Check-in *
+                  </label>
+                  <input
+                    type="date"
+                    id="checkin"
+                    name="checkin"
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="checkout" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                    Data Check-out *
+                  </label>
+                  <input
+                    type="date"
+                    id="checkout"
+                    name="checkout"
+                    required
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Messaggio */}
+              <div>
+                <label htmlFor="messaggio" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                  Messaggio (opzionale)
+                </label>
+                <textarea
+                  id="messaggio"
+                  name="messaggio"
+                  rows={4}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none resize-none"
+                  placeholder="Hai richieste particolari? Faccelo sapere..."
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
+                >
+                  <span>Invia Richiesta di Prenotazione</span>
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+              </div>
+
+              <p className="text-xs text-gray-500 text-center pt-2">
+                * Campi obbligatori. Ti risponderemo entro 24 ore.
+              </p>
+            </form>
           </div>
         </div>
       </section>
