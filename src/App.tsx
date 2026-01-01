@@ -17,13 +17,24 @@ import {
   Star,
   Clock,
   TrendingUp,
-  Quote
+  Quote,
+  Plus,
+  Minus,
+  Calendar
 } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  
+  // Booking form states
+  const [bookingStep, setBookingStep] = useState(1);
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [adulti, setAdulti] = useState(2);
+  const [bambini, setBambini] = useState(0);
+  const [neonati, setNeonati] = useState(0);
 
   const services = [
     {
@@ -613,113 +624,306 @@ function App() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Prenota il Tuo Soggiorno</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#fd8607] to-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4">
-              Compila il form per richiedere la disponibilità per le tue date
+              {bookingStep === 1 ? 'Seleziona le date e il numero di ospiti' : 'Completa i tuoi dati per la prenotazione'}
             </p>
           </div>
 
+          {/* Progress Indicator */}
+          <div className="flex items-center justify-center mb-8 space-x-4">
+            <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all duration-300 ${bookingStep === 1 ? 'bg-white text-[#3f486e]' : 'bg-white/30 text-white'}`}>
+              1
+            </div>
+            <div className={`h-1 w-16 transition-all duration-300 ${bookingStep === 2 ? 'bg-white' : 'bg-white/30'}`}></div>
+            <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all duration-300 ${bookingStep === 2 ? 'bg-white text-[#3f486e]' : 'bg-white/30 text-white'}`}>
+              2
+            </div>
+          </div>
+
           <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10">
-            <form className="space-y-6">
-              {/* Nome */}
-              <div>
-                <label htmlFor="nome" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                  Nome e Cognome *
-                </label>
-                <input
-                  type="text"
-                  id="nome"
-                  name="nome"
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                  placeholder="Mario Rossi"
-                />
-              </div>
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              
+              {/* STEP 1: Date e Ospiti */}
+              {bookingStep === 1 && (
+                <>
+                  {/* Date Check-in e Check-out */}
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                      <label htmlFor="checkin" className="block text-sm font-semibold text-[#4d4d4d] mb-2 flex items-center space-x-2">
+                        <Calendar className="h-4 w-4 text-[#3f486e]" />
+                        <span>Data Check-in *</span>
+                      </label>
+                      <input
+                        type="date"
+                        id="checkin"
+                        name="checkin"
+                        value={checkIn}
+                        onChange={(e) => setCheckIn(e.target.value)}
+                        required
+                        min={new Date().toISOString().split('T')[0]}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="checkout" className="block text-sm font-semibold text-[#4d4d4d] mb-2 flex items-center space-x-2">
+                        <Calendar className="h-4 w-4 text-[#3f486e]" />
+                        <span>Data Check-out *</span>
+                      </label>
+                      <input
+                        type="date"
+                        id="checkout"
+                        name="checkout"
+                        value={checkOut}
+                        onChange={(e) => setCheckOut(e.target.value)}
+                        required
+                        min={checkIn || new Date().toISOString().split('T')[0]}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                      />
+                    </div>
+                  </div>
 
-              {/* Email e Telefono */}
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                    placeholder="mario.rossi@email.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="telefono" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                    Telefono *
-                  </label>
-                  <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                    placeholder="+39 333 123 4567"
-                  />
-                </div>
-              </div>
+                  {/* Numero Ospiti */}
+                  <div className="border-2 border-gray-200 rounded-xl p-6 space-y-4">
+                    <h3 className="text-lg font-semibold text-[#4d4d4d] flex items-center space-x-2">
+                      <Users className="h-5 w-5 text-[#3f486e]" />
+                      <span>Ospiti</span>
+                    </h3>
 
-              {/* Date Check-in e Check-out */}
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <label htmlFor="checkin" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                    Data Check-in *
-                  </label>
-                  <input
-                    type="date"
-                    id="checkin"
-                    name="checkin"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="checkout" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                    Data Check-out *
-                  </label>
-                  <input
-                    type="date"
-                    id="checkout"
-                    name="checkout"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                  />
-                </div>
-              </div>
+                    {/* Adulti */}
+                    <div className="flex items-center justify-between py-3 border-b border-gray-100">
+                      <div>
+                        <p className="font-semibold text-[#4d4d4d]">Adulti</p>
+                        <p className="text-sm text-gray-500">13 anni o più</p>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <button
+                          type="button"
+                          onClick={() => setAdulti(Math.max(1, adulti - 1))}
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={adulti <= 1}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="font-bold text-lg text-[#4d4d4d] w-8 text-center">{adulti}</span>
+                        <button
+                          type="button"
+                          onClick={() => setAdulti(adulti + 1)}
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
 
-              {/* Messaggio */}
-              <div>
-                <label htmlFor="messaggio" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                  Messaggio (opzionale)
-                </label>
-                <textarea
-                  id="messaggio"
-                  name="messaggio"
-                  rows={4}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none resize-none"
-                  placeholder="Hai richieste particolari? Faccelo sapere..."
-                ></textarea>
-              </div>
+                    {/* Bambini */}
+                    <div className="flex items-center justify-between py-3 border-b border-gray-100">
+                      <div>
+                        <p className="font-semibold text-[#4d4d4d]">Bambini</p>
+                        <p className="text-sm text-gray-500">2-12 anni</p>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <button
+                          type="button"
+                          onClick={() => setBambini(Math.max(0, bambini - 1))}
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={bambini <= 0}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="font-bold text-lg text-[#4d4d4d] w-8 text-center">{bambini}</span>
+                        <button
+                          type="button"
+                          onClick={() => setBambini(bambini + 1)}
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
 
-              {/* Submit Button */}
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
-                >
-                  <span>Invia Richiesta di Prenotazione</span>
-                  <ArrowRight className="h-5 w-5" />
-                </button>
-              </div>
+                    {/* Neonati */}
+                    <div className="flex items-center justify-between py-3">
+                      <div>
+                        <p className="font-semibold text-[#4d4d4d]">Neonati</p>
+                        <p className="text-sm text-gray-500">Fino a 2 anni</p>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <button
+                          type="button"
+                          onClick={() => setNeonati(Math.max(0, neonati - 1))}
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={neonati <= 0}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="font-bold text-lg text-[#4d4d4d] w-8 text-center">{neonati}</span>
+                        <button
+                          type="button"
+                          onClick={() => setNeonati(neonati + 1)}
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
 
-              <p className="text-xs text-gray-500 text-center pt-2">
-                * Campi obbligatori. Ti risponderemo entro 24 ore.
-              </p>
+                  {/* Next Button */}
+                  <div className="pt-4">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (checkIn && checkOut) {
+                          setBookingStep(2);
+                        } else {
+                          alert('Per favore, seleziona le date di check-in e check-out');
+                        }
+                      }}
+                      className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
+                    >
+                      <span>Continua</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {/* STEP 2: Riepilogo Prezzo e Dati Personali */}
+              {bookingStep === 2 && (
+                <>
+                  {/* Riepilogo Prenotazione */}
+                  <div className="bg-gradient-to-r from-[#3f486e]/10 to-[#5a678f]/10 rounded-xl p-6 space-y-3">
+                    <h3 className="text-lg font-bold text-[#4d4d4d] mb-4">Riepilogo Prenotazione</h3>
+                    
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">Check-in:</span>
+                      <span className="font-semibold text-[#4d4d4d]">{new Date(checkIn).toLocaleDateString('it-IT')}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">Check-out:</span>
+                      <span className="font-semibold text-[#4d4d4d]">{new Date(checkOut).toLocaleDateString('it-IT')}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">Notti:</span>
+                      <span className="font-semibold text-[#4d4d4d]">
+                        {Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))}
+                      </span>
+                    </div>
+                    
+                    <div className="border-t border-gray-300 pt-3 mt-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Adulti ({adulti} × 60€)</span>
+                        <span className="font-semibold text-[#4d4d4d]">
+                          {(adulti * 60 * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                        </span>
+                      </div>
+                      {bambini > 0 && (
+                        <div className="flex justify-between text-sm mt-2">
+                          <span className="text-gray-600">Bambini ({bambini} × 30€)</span>
+                          <span className="font-semibold text-[#4d4d4d]">
+                            {(bambini * 30 * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                          </span>
+                        </div>
+                      )}
+                      {neonati > 0 && (
+                        <div className="flex justify-between text-sm mt-2">
+                          <span className="text-gray-600">Neonati ({neonati} × 10€)</span>
+                          <span className="font-semibold text-[#4d4d4d]">
+                            {(neonati * 10 * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="border-t-2 border-[#3f486e] pt-3 mt-3">
+                      <div className="flex justify-between">
+                        <span className="text-lg font-bold text-[#4d4d4d]">Totale:</span>
+                        <span className="text-2xl font-bold text-[#3f486e]">
+                          {((adulti * 60 + bambini * 30 + neonati * 10) * Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24))).toFixed(2)}€
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dati Personali */}
+                  <div>
+                    <label htmlFor="nome" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                      Nome e Cognome *
+                    </label>
+                    <input
+                      type="text"
+                      id="nome"
+                      name="nome"
+                      required
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                      placeholder="Mario Rossi"
+                    />
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                        placeholder="mario.rossi@email.com"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="telefono" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                        Telefono *
+                      </label>
+                      <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
+                        placeholder="+39 333 123 4567"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="messaggio" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
+                      Messaggio (opzionale)
+                    </label>
+                    <textarea
+                      id="messaggio"
+                      name="messaggio"
+                      rows={4}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none resize-none"
+                      placeholder="Hai richieste particolari? Faccelo sapere..."
+                    ></textarea>
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex gap-4 pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setBookingStep(1)}
+                      className="flex-1 bg-gray-200 hover:bg-gray-300 text-[#4d4d4d] font-bold py-4 px-8 rounded-xl transition-all duration-300"
+                    >
+                      Indietro
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-2 bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
+                    >
+                      <span>Invia Richiesta</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <p className="text-xs text-gray-500 text-center">
+                    * Campi obbligatori. Ti risponderemo entro 24 ore.
+                  </p>
+                </>
+              )}
             </form>
           </div>
         </div>
