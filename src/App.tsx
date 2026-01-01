@@ -28,6 +28,82 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 registerLocale('it', it);
 
+// Funzione per calcolare il prezzo per notte in base alla data
+function getPriceForDate(date: Date): number {
+  const month = date.getMonth() + 1; // getMonth() ritorna 0-11
+  const day = date.getDate();
+  const dayOfWeek = date.getDay(); // 0=Dom, 1=Lun, 2=Mar, 3=Mer, 4=Gio, 5=Ven, 6=Sab
+
+  // BASELINE: 100€ per qualsiasi giorno non definito
+  const BASELINE = 100;
+
+  // GENNAIO: sempre 100€
+  if (month === 1) return 100;
+
+  // FEBBRAIO e MARZO: sempre 100€
+  if (month === 2 || month === 3) return 100;
+
+  // APRILE
+  if (month === 4) {
+    // Eccezioni: 3-5 aprile (Ven-Dom): 130€
+    if (day >= 3 && day <= 5) return 130;
+    
+    // Venerdì e Sabato: 123€
+    if (dayOfWeek === 5 || dayOfWeek === 6) return 123;
+    
+    // Tutti gli altri giorni (Lun-Gio, Dom): 110€
+    return 110;
+  }
+
+  // MAGGIO
+  if (month === 5) {
+    // Eccezioni: 29-31 maggio (Ven-Dom): 135€
+    if (day >= 29 && day <= 31) return 135;
+    
+    // Venerdì e Sabato: 123€
+    if (dayOfWeek === 5 || dayOfWeek === 6) return 123;
+    
+    // Tutti gli altri giorni (Lun-Gio, Dom): 110€
+    return 110;
+  }
+
+  // GIUGNO
+  if (month === 6) {
+    // Eccezione: 1 giugno (Lun): 135€
+    if (day === 1) return 135;
+    
+    // Venerdì e Sabato: 123€
+    if (dayOfWeek === 5 || dayOfWeek === 6) return 123;
+    
+    // Tutti gli altri giorni (Lun-Gio, Dom): 110€
+    return 110;
+  }
+
+  // LUGLIO
+  if (month === 7) {
+    // Dal 1 al 26: 125€
+    if (day >= 1 && day <= 26) return 125;
+    
+    // 27-30 (Lun-Gio): 110€
+    if (day >= 27 && day <= 30) return 110;
+    
+    // 31 (Ven): 123€
+    if (day === 31) return 123;
+  }
+
+  // AGOSTO
+  if (month === 8) {
+    // Venerdì e Sabato: 123€
+    if (dayOfWeek === 5 || dayOfWeek === 6) return 123;
+    
+    // Lun-Gio, Dom: 110€
+    return 110;
+  }
+
+  // Default: 100€ per qualsiasi altro periodo
+  return BASELINE;
+}
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
@@ -698,7 +774,7 @@ function App() {
                   <div className="border-2 border-gray-200 rounded-xl p-6 space-y-4">
                     <h3 className="text-lg font-semibold text-[#4d4d4d] flex items-center space-x-2">
                       <Users className="h-5 w-5 text-[#3f486e]" />
-                      <span>Ospiti</span>
+                      <span>Ospiti (massimo 4)</span>
                     </h3>
 
                     {/* Adulti */}
@@ -720,7 +796,8 @@ function App() {
                         <button
                           type="button"
                           onClick={() => setAdulti(adulti + 1)}
-                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center"
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={adulti + bambini + neonati >= 4}
                         >
                           <Plus className="h-4 w-4" />
                         </button>
@@ -746,7 +823,8 @@ function App() {
                         <button
                           type="button"
                           onClick={() => setBambini(bambini + 1)}
-                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center"
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={adulti + bambini + neonati >= 4}
                         >
                           <Plus className="h-4 w-4" />
                         </button>
@@ -772,7 +850,8 @@ function App() {
                         <button
                           type="button"
                           onClick={() => setNeonati(neonati + 1)}
-                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center"
+                          className="w-10 h-10 rounded-full border-2 border-[#3f486e] text-[#3f486e] hover:bg-[#3f486e] hover:text-white transition-all duration-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={adulti + bambini + neonati >= 4}
                         >
                           <Plus className="h-4 w-4" />
                         </button>
@@ -816,6 +895,10 @@ function App() {
                       <span className="font-semibold text-[#4d4d4d]">{checkOut?.toLocaleDateString('it-IT')}</span>
                     </div>
                     <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">Ospiti totali:</span>
+                      <span className="font-semibold text-[#4d4d4d]">{adulti + bambini + neonati}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Notti:</span>
                       <span className="font-semibold text-[#4d4d4d]">
                         {checkIn && checkOut ? Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)) : 0}
@@ -823,37 +906,57 @@ function App() {
                     </div>
                     
                     <div className="border-t border-gray-300 pt-3 mt-3">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Adulti ({adulti} × 60€)</span>
-                        <span className="font-semibold text-[#4d4d4d]">
-                          {checkIn && checkOut ? (adulti * 60 * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
-                        </span>
-                      </div>
-                      {bambini > 0 && (
-                        <div className="flex justify-between text-sm mt-2">
-                          <span className="text-gray-600">Bambini ({bambini} × 30€)</span>
-                          <span className="font-semibold text-[#4d4d4d]">
-                            {checkIn && checkOut ? (bambini * 30 * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
-                          </span>
-                        </div>
-                      )}
-                      {neonati > 0 && (
-                        <div className="flex justify-between text-sm mt-2">
-                          <span className="text-gray-600">Neonati ({neonati} × 10€)</span>
-                          <span className="font-semibold text-[#4d4d4d]">
-                            {checkIn && checkOut ? (neonati * 10 * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="border-t-2 border-[#3f486e] pt-3 mt-3">
-                      <div className="flex justify-between">
-                        <span className="text-lg font-bold text-[#4d4d4d]">Totale:</span>
-                        <span className="text-2xl font-bold text-[#3f486e]">
-                          {checkIn && checkOut ? ((adulti * 60 + bambini * 30 + neonati * 10) * Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24))).toFixed(2) : '0.00'}€
-                        </span>
-                      </div>
+                      {(() => {
+                        if (!checkIn || !checkOut) return null;
+                        
+                        const totalGuests = adulti + bambini + neonati;
+                        let totalPrice = 0;
+                        let nightPrices: { date: string; price: number }[] = [];
+                        
+                        // Calcola il prezzo per ogni notte
+                        const currentDate = new Date(checkIn);
+                        while (currentDate < checkOut) {
+                          const nightPrice = getPriceForDate(currentDate);
+                          nightPrices.push({
+                            date: currentDate.toLocaleDateString('it-IT'),
+                            price: nightPrice
+                          });
+                          totalPrice += nightPrice;
+                          currentDate.setDate(currentDate.getDate() + 1);
+                        }
+                        
+                        // Aggiungi costo persone extra (oltre le prime 2)
+                        const extraGuests = Math.max(0, totalGuests - 2);
+                        const extraGuestsCost = extraGuests * 20 * nightPrices.length;
+                        
+                        return (
+                          <>
+                            <div className="space-y-2 mb-3">
+                              <div className="flex justify-between text-sm">
+                                <span className="text-gray-600">Costo appartamento ({nightPrices.length} {nightPrices.length === 1 ? 'notte' : 'notti'})</span>
+                                <span className="font-semibold text-[#4d4d4d]">{totalPrice.toFixed(2)}€</span>
+                              </div>
+                              {extraGuests > 0 && (
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-600">
+                                    {extraGuests} {extraGuests === 1 ? 'ospite aggiuntivo' : 'ospiti aggiuntivi'} (20€/notte)
+                                  </span>
+                                  <span className="font-semibold text-[#4d4d4d]">{extraGuestsCost.toFixed(2)}€</span>
+                                </div>
+                              )}
+                            </div>
+                            
+                            <div className="border-t-2 border-[#3f486e] pt-3 mt-3">
+                              <div className="flex justify-between">
+                                <span className="text-lg font-bold text-[#4d4d4d]">Totale:</span>
+                                <span className="text-2xl font-bold text-[#3f486e]">
+                                  {(totalPrice + extraGuestsCost).toFixed(2)}€
+                                </span>
+                              </div>
+                            </div>
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
 
