@@ -108,6 +108,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showBookingConfirmation, setShowBookingConfirmation] = useState(false);
   
   // Booking form states
   const [bookingStep, setBookingStep] = useState(1);
@@ -747,34 +748,44 @@ function App() {
                   const extraGuestsCost = extraGuests * 20 * nights;
                   totalPrice += extraGuestsCost;
                   
-                  // Aggiungi dati al form
-                  formData.set('checkin', checkIn.toLocaleDateString('it-IT'));
-                  formData.set('checkout', checkOut.toLocaleDateString('it-IT'));
-                  formData.set('adulti', adulti.toString());
-                  formData.set('bambini', bambini.toString());
-                  formData.set('neonati', neonati.toString());
-                  formData.set('prezzo-totale', `${totalPrice.toFixed(2)}€`);
+                  // Prepara i dati per Netlify
+                  const submitData = new URLSearchParams();
+                  submitData.append('form-name', 'prenotazione');
+                  submitData.append('nome', formData.get('nome') as string);
+                  submitData.append('email', formData.get('email') as string);
+                  submitData.append('telefono', formData.get('telefono') as string);
+                  submitData.append('checkin', checkIn.toLocaleDateString('it-IT'));
+                  submitData.append('checkout', checkOut.toLocaleDateString('it-IT'));
+                  submitData.append('adulti', adulti.toString());
+                  submitData.append('bambini', bambini.toString());
+                  submitData.append('neonati', neonati.toString());
+                  submitData.append('prezzo-totale', `${totalPrice.toFixed(2)}€`);
+                  submitData.append('messaggio', formData.get('messaggio') as string || '');
                   
                   // Invia a Netlify
                   fetch('/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData as any).toString()
+                    body: submitData.toString()
                   })
-                    .then(() => {
-                      alert('Richiesta di prenotazione inviata con successo! Ti contatteremo al più presto.');
-                      // Reset form
-                      setBookingStep(1);
-                      setCheckIn(null);
-                      setCheckOut(null);
-                      setAdulti(2);
-                      setBambini(0);
-                      setNeonati(0);
-                      form.reset();
+                    .then((response) => {
+                      if (response.ok) {
+                        setShowBookingConfirmation(true);
+                        // Reset form
+                        setBookingStep(1);
+                        setCheckIn(null);
+                        setCheckOut(null);
+                        setAdulti(2);
+                        setBambini(0);
+                        setNeonati(0);
+                        form.reset();
+                      } else {
+                        throw new Error('Errore nell\'invio');
+                      }
                     })
                     .catch((error) => {
-                      alert('Si è verificato un errore. Per favore riprova o contattaci direttamente.');
-                      console.error(error);
+                      console.error('Errore:', error);
+                      alert('Si è verificato un errore durante l\'invio. Per favore riprova o contattaci direttamente al +39 333 210 9899');
                     });
                 }
               }}
@@ -1357,6 +1368,34 @@ function App() {
               <button
                 onClick={() => setShowPrivacyPolicy(false)}
                 className="w-full bg-[#3f486e] hover:bg-[#5a678f] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking Confirmation Modal */}
+      {showBookingConfirmation && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                <CheckCircle className="h-10 w-10 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#4d4d4d] mb-4">Richiesta Inviata!</h3>
+              <p className="text-gray-600 mb-6">
+                Grazie per la tua richiesta di prenotazione. Confermeremo la disponibilità e ti contatteremo entro 24 ore.
+              </p>
+              <div className="bg-[#3f486e]/10 rounded-xl p-4 mb-6">
+                <p className="text-sm text-[#4d4d4d] font-medium">
+                  Riceverai una conferma via email o telefono con tutti i dettagli della prenotazione.
+                </p>
+              </div>
+              <button
+                onClick={() => setShowBookingConfirmation(false)}
+                className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 Chiudi
               </button>
