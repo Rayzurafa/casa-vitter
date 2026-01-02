@@ -721,7 +721,72 @@ function App() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form 
+              name="prenotazione" 
+              method="POST" 
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              className="space-y-6" 
+              onSubmit={(e) => {
+                e.preventDefault();
+                
+                if (bookingStep === 2 && checkIn && checkOut) {
+                  const form = e.target as HTMLFormElement;
+                  const formData = new FormData(form);
+                  
+                  // Calcola prezzo totale
+                  const totalGuests = adulti + bambini + neonati;
+                  let totalPrice = 0;
+                  const currentDate = new Date(checkIn);
+                  while (currentDate < checkOut) {
+                    totalPrice += getPriceForDate(currentDate);
+                    currentDate.setDate(currentDate.getDate() + 1);
+                  }
+                  const extraGuests = Math.max(0, totalGuests - 2);
+                  const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+                  const extraGuestsCost = extraGuests * 20 * nights;
+                  totalPrice += extraGuestsCost;
+                  
+                  // Aggiungi dati al form
+                  formData.set('checkin', checkIn.toLocaleDateString('it-IT'));
+                  formData.set('checkout', checkOut.toLocaleDateString('it-IT'));
+                  formData.set('adulti', adulti.toString());
+                  formData.set('bambini', bambini.toString());
+                  formData.set('neonati', neonati.toString());
+                  formData.set('prezzo-totale', `${totalPrice.toFixed(2)}€`);
+                  
+                  // Invia a Netlify
+                  fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData as any).toString()
+                  })
+                    .then(() => {
+                      alert('Richiesta di prenotazione inviata con successo! Ti contatteremo al più presto.');
+                      // Reset form
+                      setBookingStep(1);
+                      setCheckIn(null);
+                      setCheckOut(null);
+                      setAdulti(2);
+                      setBambini(0);
+                      setNeonati(0);
+                      form.reset();
+                    })
+                    .catch((error) => {
+                      alert('Si è verificato un errore. Per favore riprova o contattaci direttamente.');
+                      console.error(error);
+                    });
+                }
+              }}
+            >
+              <input type="hidden" name="form-name" value="prenotazione" />
+              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="checkin" value="" />
+              <input type="hidden" name="checkout" value="" />
+              <input type="hidden" name="adulti" value="" />
+              <input type="hidden" name="bambini" value="" />
+              <input type="hidden" name="neonati" value="" />
+              <input type="hidden" name="prezzo-totale" value="" />
               
               {/* STEP 1: Date e Ospiti */}
               {bookingStep === 1 && (

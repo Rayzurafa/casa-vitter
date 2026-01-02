@@ -8,6 +8,20 @@
     <title>Casa Vitter - Appartamento a Merano</title>
   </head>
   <body>
+    <!-- Hidden form for Netlify Forms detection -->
+    <form name="prenotazione" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="nome" />
+      <input type="email" name="email" />
+      <input type="tel" name="telefono" />
+      <input type="text" name="checkin" />
+      <input type="text" name="checkout" />
+      <input type="number" name="adulti" />
+      <input type="number" name="bambini" />
+      <input type="number" name="neonati" />
+      <input type="text" name="prezzo-totale" />
+      <textarea name="messaggio"></textarea>
+    </form>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
