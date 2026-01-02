@@ -109,6 +109,7 @@ function App() {
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showBookingConfirmation, setShowBookingConfirmation] = useState(false);
+  const [showBookingError, setShowBookingError] = useState(false);
   
   // Booking form states
   const [bookingStep, setBookingStep] = useState(1);
@@ -785,7 +786,7 @@ function App() {
                     })
                     .catch((error) => {
                       console.error('Errore:', error);
-                      alert('Si è verificato un errore durante l\'invio. Per favore riprova o contattaci direttamente al +39 333 210 9899');
+                      setShowBookingError(true);
                     });
                 }
               }}
@@ -1379,7 +1380,7 @@ function App() {
       {/* Booking Confirmation Modal */}
       {showBookingConfirmation && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
             <div className="text-center">
               <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
                 <CheckCircle className="h-10 w-10 text-green-600" />
@@ -1395,6 +1396,39 @@ function App() {
               </div>
               <button
                 onClick={() => setShowBookingConfirmation(false)}
+                className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking Error Modal */}
+      {showBookingError && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                <X className="h-10 w-10 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#4d4d4d] mb-4">Errore nell'invio</h3>
+              <p className="text-gray-600 mb-6">
+                Si è verificato un errore durante l'invio della richiesta. Per favore riprova o contattaci direttamente.
+              </p>
+              <div className="bg-[#3f486e]/10 rounded-xl p-4 mb-6 space-y-2">
+                <div className="flex items-center justify-center space-x-2 text-[#4d4d4d]">
+                  <Phone className="h-4 w-4" />
+                  <a href="tel:+393332109899" className="font-medium hover:text-[#3f486e]">+39 333 210 9899</a>
+                </div>
+                <div className="flex items-center justify-center space-x-2 text-[#4d4d4d]">
+                  <Mail className="h-4 w-4" />
+                  <a href="mailto:casavittermerano@gmail.com" className="font-medium hover:text-[#3f486e]">casavittermerano@gmail.com</a>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowBookingError(false)}
                 className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 Chiudi
