@@ -747,7 +747,8 @@ function App() {
                   const extraGuests = Math.max(0, totalGuests - 2);
                   const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
                   const extraGuestsCost = extraGuests * 20 * nights;
-                  totalPrice += extraGuestsCost;
+                  const cleaningFee = 60;
+                  totalPrice += extraGuestsCost + cleaningFee;
                   
                   // Prepara i dati per Netlify
                   const submitData = new URLSearchParams();
@@ -1006,6 +1007,9 @@ function App() {
                         const extraGuests = Math.max(0, totalGuests - 2);
                         const extraGuestsCost = extraGuests * 20 * nightPrices.length;
                         
+                        // Spese di pulizia finale
+                        const cleaningFee = 60;
+                        
                         return (
                           <>
                             <div className="space-y-2 mb-3">
@@ -1021,13 +1025,17 @@ function App() {
                                   <span className="font-semibold text-[#4d4d4d]">{extraGuestsCost.toFixed(2)}€</span>
                                 </div>
                               )}
+                              <div className="flex justify-between text-sm">
+                                <span className="text-gray-600">Spese di pulizia finale</span>
+                                <span className="font-semibold text-[#4d4d4d]">{cleaningFee.toFixed(2)}€</span>
+                              </div>
                             </div>
                             
                             <div className="border-t-2 border-[#3f486e] pt-3 mt-3">
                               <div className="flex justify-between">
                                 <span className="text-lg font-bold text-[#4d4d4d]">Totale:</span>
                                 <span className="text-2xl font-bold text-[#3f486e]">
-                                  {(totalPrice + extraGuestsCost).toFixed(2)}€
+                                  {(totalPrice + extraGuestsCost + cleaningFee).toFixed(2)}€
                                 </span>
                               </div>
                             </div>
