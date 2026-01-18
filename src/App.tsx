@@ -25,6 +25,7 @@ import {
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { it } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
+import { supabase } from './supabaseClient';
 
 registerLocale('it', it);
 
@@ -118,6 +119,38 @@ function App() {
   const [adulti, setAdulti] = useState(2);
   const [bambini, setBambini] = useState(0);
   const [neonati, setNeonati] = useState(0);
+  
+  // Blocked dates from Supabase
+  const [blockedDates, setBlockedDates] = useState<Date[]>([]);
+
+  // Fetch blocked dates on mount
+  useEffect(() => {
+    const fetchBlockedDates = async () => {
+      const { data, error } = await supabase
+        .from('blocked_dates')
+        .select('check_in, check_out');
+      
+      if (!error && data) {
+        // Espandi ogni range in tutti i giorni compresi
+        const allBlockedDates: Date[] = [];
+        data.forEach(booking => {
+          const checkIn = new Date(booking.check_in + 'T00:00:00');
+          const checkOut = new Date(booking.check_out + 'T00:00:00');
+          
+          // Aggiungi ogni giorno dal check-in al check-out (escluso)
+          const currentDate = new Date(checkIn);
+          while (currentDate < checkOut) {
+            allBlockedDates.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+        });
+        
+        setBlockedDates(allBlockedDates);
+      }
+    };
+
+    fetchBlockedDates();
+  }, []);
 
   const services = [
     {
@@ -818,6 +851,7 @@ function App() {
                         startDate={checkIn}
                         endDate={checkOut}
                         minDate={new Date()}
+                        excludeDates={blockedDates}
                         locale="it"
                         dateFormat="dd/MM/yyyy"
                         placeholderText="Seleziona data"
@@ -838,6 +872,7 @@ function App() {
                         startDate={checkIn}
                         endDate={checkOut}
                         minDate={checkIn || new Date()}
+                        excludeDates={blockedDates}
                         locale="it"
                         dateFormat="dd/MM/yyyy"
                         placeholderText="Seleziona data"
