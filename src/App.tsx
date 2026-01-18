@@ -770,7 +770,7 @@ function App() {
               data-netlify="true"
               netlify-honeypot="bot-field"
               className="space-y-6" 
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 
                 if (bookingStep === 2 && checkIn && checkOut) {
@@ -786,12 +786,34 @@ function App() {
                     currentDate.setDate(currentDate.getDate() + 1);
                   }
                   const extraGuests = Math.max(0, totalGuests - 2);
-                  const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+                  const nights = Math.ceil((checkOut.getTime() - checkOut.getTime()) / (1000 * 60 * 60 * 24));
                   const extraGuestsCost = extraGuests * 20 * nights;
                   const cleaningFee = 60;
                   totalPrice += extraGuestsCost + cleaningFee;
                   
-                  // Prepara i dati per Netlify
+                  // Salva in Supabase
+                  const { error: supabaseError } = await supabase
+                    .from('booking_requests')
+                    .insert([{
+                      check_in: checkIn.toISOString().split('T')[0],
+                      check_out: checkOut.toISOString().split('T')[0],
+                      adulti: adulti,
+                      bambini: bambini,
+                      neonati: neonati,
+                      nome: formData.get('nome') as string,
+                      email: formData.get('email') as string,
+                      telefono: formData.get('telefono') as string,
+                      messaggio: formData.get('messaggio') as string || null,
+                      status: 'pending'
+                    }]);
+
+                  if (supabaseError) {
+                    console.error('Errore salvataggio richiesta:', supabaseError);
+                    setShowBookingError(true);
+                    return;
+                  }
+                  
+                  // Prepara i dati per Netlify (backup)
                   const submitData = new URLSearchParams();
                   submitData.append('form-name', 'prenotazione');
                   submitData.append('nome', formData.get('nome') as string);

@@ -13,3 +13,20 @@ export interface BlockedDate {
   note?: string;
   created_at: string;
 }
+
+// Tipo per le richieste di prenotazione
+export interface BookingRequest {
+  id: string;
+  check_in: string;
+  check_out: string;
+  adulti: number;
+  bambini: number;
+  neonati: number;
+  nome: string;
+  email: string;
+  telefono: string;
+  messaggio?: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  created_at: string;
+  updated_at: string;
+}

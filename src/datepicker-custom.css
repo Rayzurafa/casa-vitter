@@ -45,7 +45,7 @@
 }
 
 .react-datepicker__day:hover {
-  background-color: #5a678f;
+  background-color: #3f486e;
   color: white;
   transform: scale(1.05);
 }
@@ -87,8 +87,9 @@
 
 .react-datepicker__day--today {
   font-weight: 700;
-  color: #fd8607;
-  border: 2px solid #fd8607;
+  background-color: #fd8607;
+  color: white;
+  border: none;
 }
 
 .react-datepicker__day--today.react-datepicker__day--selected {
