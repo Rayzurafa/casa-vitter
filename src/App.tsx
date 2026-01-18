@@ -697,6 +697,13 @@ function App() {
                     <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                     <span>Invia email</span>
                   </a>
+                  <a
+                    href="#prenota"
+                    className="group bg-white hover:bg-white/90 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold transition-all duration-300 inline-flex items-center justify-center space-x-2 hover:shadow-lg transform hover:scale-105 text-[#3f486e] text-sm sm:text-base"
+                  >
+                    <Calendar className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                    <span>Prenota ora</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -748,7 +755,7 @@ function App() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Prenota il Tuo Soggiorno</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#fd8607] to-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4">
-              {bookingStep === 1 ? 'Seleziona le date e il numero di ospiti' : 'Completa i tuoi dati per la prenotazione'}
+              {bookingStep === 1 ? 'Seleziona le date e il numero di ospiti per ricevere un\'offerta personalizzata' : 'Completa i tuoi dati per la prenotazione'}
             </p>
           </div>
 
