@@ -130,7 +130,14 @@ function App() {
         .from('blocked_dates')
         .select('check_in, check_out');
       
-      if (!error && data) {
+      if (error) {
+        console.error('Error fetching blocked dates:', error);
+        return;
+      }
+      
+      if (data) {
+        console.log('Blocked bookings from DB:', data);
+        
         // Espandi ogni range in tutti i giorni compresi
         const allBlockedDates: Date[] = [];
         data.forEach(booking => {
@@ -145,6 +152,7 @@ function App() {
           }
         });
         
+        console.log('Total blocked dates:', allBlockedDates.length, allBlockedDates);
         setBlockedDates(allBlockedDates);
       }
     };
@@ -977,11 +985,16 @@ function App() {
                     <button
                       type="button"
                       onClick={() => {
-                        if (checkIn && checkOut) {
-                          setBookingStep(2);
-                        } else {
+                        if (!checkIn || !checkOut) {
                           alert('Per favore, seleziona le date di check-in e check-out');
+                          return;
                         }
+                        const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+                        if (nights < 3) {
+                          alert('La prenotazione deve essere di almeno 3 notti');
+                          return;
+                        }
+                        setBookingStep(2);
                       }}
                       className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
                     >
@@ -992,94 +1005,9 @@ function App() {
                 </>
               )}
 
-              {/* STEP 2: Riepilogo Prezzo e Dati Personali */}
+              {/* STEP 2: Dati Personali */}
               {bookingStep === 2 && (
                 <>
-                  {/* Riepilogo Prenotazione */}
-                  <div className="bg-gradient-to-r from-[#3f486e]/10 to-[#5a678f]/10 rounded-xl p-6 space-y-3">
-                    <h3 className="text-lg font-bold text-[#4d4d4d] mb-4">Riepilogo Prenotazione</h3>
-                    
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Check-in:</span>
-                      <span className="font-semibold text-[#4d4d4d]">{checkIn?.toLocaleDateString('it-IT')}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Check-out:</span>
-                      <span className="font-semibold text-[#4d4d4d]">{checkOut?.toLocaleDateString('it-IT')}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Ospiti totali:</span>
-                      <span className="font-semibold text-[#4d4d4d]">{adulti + bambini + neonati}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Notti:</span>
-                      <span className="font-semibold text-[#4d4d4d]">
-                        {checkIn && checkOut ? Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)) : 0}
-                      </span>
-                    </div>
-                    
-                    <div className="border-t border-gray-300 pt-3 mt-3">
-                      {(() => {
-                        if (!checkIn || !checkOut) return null;
-                        
-                        const totalGuests = adulti + bambini + neonati;
-                        let totalPrice = 0;
-                        let nightPrices: { date: string; price: number }[] = [];
-                        
-                        // Calcola il prezzo per ogni notte
-                        const currentDate = new Date(checkIn);
-                        while (currentDate < checkOut) {
-                          const nightPrice = getPriceForDate(currentDate);
-                          nightPrices.push({
-                            date: currentDate.toLocaleDateString('it-IT'),
-                            price: nightPrice
-                          });
-                          totalPrice += nightPrice;
-                          currentDate.setDate(currentDate.getDate() + 1);
-                        }
-                        
-                        // Aggiungi costo persone extra (oltre le prime 2)
-                        const extraGuests = Math.max(0, totalGuests - 2);
-                        const extraGuestsCost = extraGuests * 20 * nightPrices.length;
-                        
-                        // Spese di pulizia finale
-                        const cleaningFee = 60;
-                        
-                        return (
-                          <>
-                            <div className="space-y-2 mb-3">
-                              <div className="flex justify-between text-sm">
-                                <span className="text-gray-600">Costo appartamento ({nightPrices.length} {nightPrices.length === 1 ? 'notte' : 'notti'})</span>
-                                <span className="font-semibold text-[#4d4d4d]">{totalPrice.toFixed(2)}€</span>
-                              </div>
-                              {extraGuests > 0 && (
-                                <div className="flex justify-between text-sm">
-                                  <span className="text-gray-600">
-                                    {extraGuests} {extraGuests === 1 ? 'ospite aggiuntivo' : 'ospiti aggiuntivi'} (20€/notte)
-                                  </span>
-                                  <span className="font-semibold text-[#4d4d4d]">{extraGuestsCost.toFixed(2)}€</span>
-                                </div>
-                              )}
-                              <div className="flex justify-between text-sm">
-                                <span className="text-gray-600">Spese di pulizia finale</span>
-                                <span className="font-semibold text-[#4d4d4d]">{cleaningFee.toFixed(2)}€</span>
-                              </div>
-                            </div>
-                            
-                            <div className="border-t-2 border-[#3f486e] pt-3 mt-3">
-                              <div className="flex justify-between">
-                                <span className="text-lg font-bold text-[#4d4d4d]">Totale:</span>
-                                <span className="text-2xl font-bold text-[#3f486e]">
-                                  {(totalPrice + extraGuestsCost + cleaningFee).toFixed(2)}€
-                                </span>
-                              </div>
-                            </div>
-                          </>
-                        );
-                      })()}
-                    </div>
-                  </div>
-
                   {/* Dati Personali */}
                   <div>
                     <label htmlFor="nome" className="block text-sm font-semibold text-[#4d4d4d] mb-2">

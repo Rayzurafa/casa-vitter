@@ -73,6 +73,18 @@
   transform: none;
 }
 
+/* Date occupate (escluse) - Solo numero arancione */
+.react-datepicker__day--excluded {
+  color: #fd8607 !important;
+  font-weight: 700 !important;
+  cursor: not-allowed !important;
+}
+
+.react-datepicker__day--excluded:hover {
+  background-color: rgba(253, 134, 7, 0.1);
+  transform: none !important;
+}
+
 .react-datepicker__day--today {
   font-weight: 700;
   color: #fd8607;
