@@ -18,20 +18,45 @@ export const translations = {
     
     // About
     aboutTitle: 'L\'Appartamento',
+    aboutSubtitle: 'Casa Vitter',
     aboutDescription: 'Casa Vitter è un elegante appartamento situato nel cuore di Merano, perfetto per chi desidera vivere la città in tutto il suo splendore. Con spazi ampi e luminosi, design moderno e una posizione strategica, offre il comfort ideale per le tue vacanze.',
+    aboutParagraph1: 'Casa Vitter è un silenzioso bilocale situato nel cuore di Merano, a soli 200 metri dalle rinomate Terme di Merano e a pochi passi dal centro storico. Una posizione privilegiata che unisce la tranquillità di una zona residenziale alla comodità dei servizi.',
+    aboutParagraph2: 'L\'appartamento, posizionato al primo piano con ascensore, si compone di un accogliente soggiorno con divano letto a una piazza e mezzo (140x200), angolo cucina completamente attrezzato, camera matrimoniale con ampi armadi, bagno finestrato con doccia e bidet, e un ampio balcone.',
+    aboutParagraph3: 'Ideale per 2 persone, può ospitare comodamente fino a 3 adulti e 1 bambino. Nel prezzo sono inclusi garage privato (a 60m), biancheria da letto, da bagno e per la cucina. Lo spazio è completamente indipendente e a vostra disposizione.',
+    centralLocation: 'Posizione centrale',
+    garageIncluded: 'Garage incluso',
+    allInclusive: 'Tutto incluso',
     apartmentFeatures: 'Caratteristiche dell\'Appartamento',
     feature1Title: 'Posizione Centrale',
+    feature1Description: 'Casa Vitter si trova nel cuore di Merano, a soli 200 metri dalle rinomate Terme di Merano e a pochi passi dal centro storico. Una posizione strategica che ti permette di raggiungere comodamente a piedi tutte le principali attrazioni, fermate dei mezzi pubblici, negozi e ristoranti della città.',
     feature1Desc: 'A pochi passi dal centro di Merano, vicino a negozi, ristoranti e attrazioni principali.',
-    feature2Title: 'Spazi Ampi',
+    feature2Title: 'Perfetto per Famiglie',
+    feature2Description: 'Concepito idealmente per 2 persone, l\'appartamento si adatta perfettamente anche a famiglie o gruppi fino a un massimo di 4 persone (3 adulti e un bambino), grazie al comodo divano letto del soggiorno e alla possibilità di aggiungere un lettino con sponde per bambini su richiesta.',
     feature2Desc: 'Oltre 90 mq di comfort con camere spaziose, cucina completamente attrezzata e balcone panoramico.',
-    feature3Title: 'Design Moderno',
+    feature3Title: 'Cucina Attrezzata',
+    feature3Description: 'L\'angolo cucina è completamente attrezzato con tutto il necessario per preparare i vostri pasti: frigorifero, piano cottura, forno, microonde, caffettiera e stoviglie. Perfetto per chi desidera sentirsi a casa anche in vacanza e gustare i prodotti locali dell\'Alto Adige.',
     feature3Desc: 'Arredamento contemporaneo e finiture di alta qualità per un soggiorno indimenticabile.',
-    feature4Title: 'Garage Privato',
+    feature4Title: 'Tutto Incluso',
+    feature4Description: 'La biancheria da letto, da bagno e per la cucina sono incluse nel prezzo. L\'appartamento è completamente indipendente e a vostra completa disposizione, garantendo privacy e comfort durante tutto il vostro soggiorno a Merano in un condominio tranquillo e silenzioso.',
     feature4Desc: 'Parcheggio coperto incluso per la tua comodità e sicurezza.',
+    feature5Title: 'Servizi Nelle Vicinanze',
+    feature5Description: 'Nelle immediate vicinanze di Casa Vitter troverete supermercati e negozi alimentari, bar, ristoranti, pizzerie, un centro commerciale e tutto ciò di cui avete bisogno per un soggiorno spensierato e rilassante. La tranquillità della zona residenziale unita alla comodità dei servizi.',
+    feature6Title: 'Spazi Confortevoli',
+    feature6Description: 'L\'appartamento al primo piano con ascensore si compone di un accogliente soggiorno con divano letto a una piazza e mezzo (140x200), camera matrimoniale con ampi armadi, bagno finestrato con doccia e bidet, e un ampio balcone per godere del clima mite meranese. Spazi funzionali pensati per il massimo comfort.',
+    
+    // Features
+    featuresTitle: 'Caratteristiche',
+    featuresSubtitle: 'Tutto ciò che serve per un soggiorno confortevole nel cuore di Merano',
+    
+    // Photos
+    photosTitle: 'Foto',
+    photosSubtitle: 'Scopri gli spazi di Casa Vitter nel cuore di Merano',
     
     // Reviews
     reviewsTitle: 'Recensioni',
-    reviewsSubtitle: 'Cosa dicono i nostri ospiti',
+    reviewsSubtitle: 'La soddisfazione dei nostri ospiti è la nostra migliore referenza',
+    requestAvailability: 'Richiedi disponibilità',
+    guestLabel: 'Ospite Casa Vitter',
     
     // Contact
     contactTitle: 'Contatti',
@@ -86,14 +111,27 @@ export const translations = {
     
     // Success/Error
     bookingSuccess: 'Richiesta inviata!',
-    bookingSuccessMessage: 'La tua richiesta di prenotazione è stata inviata con successo. Ti contatteremo presto per confermare.',
-    bookingError: 'Errore',
-    bookingErrorMessage: 'Si è verificato un errore durante l\'invio della richiesta. Riprova o contattaci direttamente.',
+    bookingSuccessMessage: 'Grazie per la tua richiesta di prenotazione. Confermeremo la disponibilità e ti contatteremo entro 24 ore.',
+    bookingSuccessDetails: 'Riceverai una conferma via email o telefono con tutti i dettagli della prenotazione.',
+    bookingError: 'Errore nell\'invio',
+    bookingErrorMessage: 'Si è verificato un errore durante l\'invio della richiesta. Per favore riprova o contattaci direttamente.',
     close: 'Chiudi',
     
     // Footer
+    footerDescription: 'Bilocale nel cuore di Merano, a 200m dalle Terme. Ideale per soggiorni rilassanti in Alto Adige.',
+    footerContacts: 'Contatti',
+    footerLocation: 'Posizione',
+    footerInfo: 'Informazioni',
+    footerCapacity: '2-4 persone',
+    footerGarage: 'Garage incluso',
+    footerLinens: 'Biancheria inclusa',
+    footerCopyright: '© 2025 Casa Vitter. Tutti i diritti riservati.',
+    footerSubtitle: 'Bilocale a Merano - CIN: IT021051B4MKWBY5TU',
     footerRights: 'Tutti i diritti riservati.',
     privacyPolicy: 'Privacy Policy',
+    privacyPolicyTitle: 'Privacy Policy e Termini di Utilizzo',
+    locationLabel: 'Ubicazione',
+    cinLabel: 'Codice Identificativo',
   },
   
   de: {
@@ -113,20 +151,45 @@ export const translations = {
     
     // About
     aboutTitle: 'Die Wohnung',
+    aboutSubtitle: 'Casa Vitter',
     aboutDescription: 'Casa Vitter ist eine elegante Wohnung im Herzen von Meran, perfekt für alle, die die Stadt in ihrer ganzen Pracht erleben möchten. Mit großen und hellen Räumen, modernem Design und einer strategischen Lage bietet sie idealen Komfort für Ihren Urlaub.',
+    aboutParagraph1: 'Casa Vitter ist eine ruhige Zwei-Zimmer-Wohnung im Herzen von Meran, nur 200 Meter von den berühmten Therme Meran entfernt und nur wenige Schritte vom historischen Zentrum. Eine privilegierte Lage, die die Ruhe eines Wohngebiets mit der Bequemlichkeit der Dienstleistungen verbindet.',
+    aboutParagraph2: 'Die Wohnung im ersten Stock mit Aufzug besteht aus einem gemütlichen Wohnzimmer mit Schlafsofa (140x200), voll ausgestatteter Küchenzeile, Doppelschlafzimmer mit großen Schränken, Badezimmer mit Fenster, Dusche und Bidet und einem großen Balkon.',
+    aboutParagraph3: 'Ideal für 2 Personen, kann bequem bis zu 3 Erwachsene und 1 Kind beherbergen. Im Preis inbegriffen sind private Garage (60m entfernt), Bettwäsche, Handtücher und Küchenwäsche. Der Raum ist komplett unabhängig und steht Ihnen zur Verfügung.',
+    centralLocation: 'Zentrale Lage',
+    garageIncluded: 'Garage inklusive',
+    allInclusive: 'Alles inklusive',
     apartmentFeatures: 'Wohnungsmerkmale',
     feature1Title: 'Zentrale Lage',
+    feature1Description: 'Casa Vitter befindet sich im Herzen von Meran, nur 200 Meter von den berühmten Therme Meran entfernt und nur wenige Schritte vom historischen Zentrum. Eine strategische Lage, die es Ihnen ermöglicht, bequem zu Fuß alle Hauptattraktionen, öffentlichen Verkehrsmittel, Geschäfte und Restaurants der Stadt zu erreichen.',
     feature1Desc: 'Nur wenige Schritte vom Zentrum Merans entfernt, in der Nähe von Geschäften, Restaurants und Hauptattraktionen.',
-    feature2Title: 'Geräumige Räume',
+    feature2Title: 'Perfekt für Familien',
+    feature2Description: 'Ideal für 2 Personen konzipiert, eignet sich die Wohnung perfekt auch für Familien oder Gruppen bis zu maximal 4 Personen (3 Erwachsene und ein Kind), dank des bequemen Schlafsofas im Wohnzimmer und der Möglichkeit, auf Anfrage ein Kinderbett mit Seitenschutz hinzuzufügen.',
     feature2Desc: 'Über 90 m² Komfort mit großzügigen Zimmern, voll ausgestatteter Küche und Panoramabalkon.',
-    feature3Title: 'Modernes Design',
+    feature3Title: 'Ausgestattete Küche',
+    feature3Description: 'Die Küchenzeile ist komplett ausgestattet mit allem Notwendigen für die Zubereitung Ihrer Mahlzeiten: Kühlschrank, Kochfeld, Backofen, Mikrowelle, Kaffeemaschine und Geschirr. Perfekt für diejenigen, die sich auch im Urlaub zu Hause fühlen und die lokalen Produkte Südtirols genießen möchten.',
     feature3Desc: 'Zeitgenössische Einrichtung und hochwertige Ausstattung für einen unvergesslichen Aufenthalt.',
-    feature4Title: 'Private Garage',
+    feature4Title: 'Alles Inklusive',
+    feature4Description: 'Bettwäsche, Handtücher und Küchenwäsche sind im Preis inbegriffen. Die Wohnung ist komplett unabhängig und steht Ihnen vollständig zur Verfügung und garantiert Privatsphäre und Komfort während Ihres gesamten Aufenthalts in Meran in einem ruhigen Wohnhaus.',
     feature4Desc: 'Überdachter Parkplatz für Ihre Bequemlichkeit und Sicherheit inklusive.',
+    feature5Title: 'Dienstleistungen in der Nähe',
+    feature5Description: 'In unmittelbarer Nähe von Casa Vitter finden Sie Supermärkte und Lebensmittelgeschäfte, Bars, Restaurants, Pizzerien, ein Einkaufszentrum und alles, was Sie für einen unbeschwerten und entspannenden Aufenthalt benötigen. Die Ruhe des Wohngebiets verbunden mit der Bequemlichkeit der Dienstleistungen.',
+    feature6Title: 'Komfortable Räume',
+    feature6Description: 'Die Wohnung im ersten Stock mit Aufzug besteht aus einem gemütlichen Wohnzimmer mit Schlafsofa (140x200), Doppelschlafzimmer mit großen Schränken, Badezimmer mit Fenster, Dusche und Bidet und einem großen Balkon, um das milde Klima von Meran zu genießen. Funktionale Räume für maximalen Komfort.',
+    
+    // Features
+    featuresTitle: 'Merkmale',
+    featuresSubtitle: 'Alles was Sie für einen komfortablen Aufenthalt im Herzen von Meran benötigen',
+    
+    // Photos
+    photosTitle: 'Fotos',
+    photosSubtitle: 'Entdecken Sie die Räume von Casa Vitter im Herzen von Meran',
     
     // Reviews
     reviewsTitle: 'Bewertungen',
-    reviewsSubtitle: 'Was unsere Gäste sagen',
+    reviewsSubtitle: 'Die Zufriedenheit unserer Gäste ist unsere beste Referenz',
+    requestAvailability: 'Verfügbarkeit anfragen',
+    guestLabel: 'Gast Casa Vitter',
     
     // Contact
     contactTitle: 'Kontakt',
@@ -181,14 +244,27 @@ export const translations = {
     
     // Success/Error
     bookingSuccess: 'Anfrage gesendet!',
-    bookingSuccessMessage: 'Ihre Buchungsanfrage wurde erfolgreich gesendet. Wir werden Sie bald kontaktieren, um zu bestätigen.',
-    bookingError: 'Fehler',
+    bookingSuccessMessage: 'Vielen Dank für Ihre Buchungsanfrage. Wir werden die Verfügbarkeit bestätigen und uns innerhalb von 24 Stunden bei Ihnen melden.',
+    bookingSuccessDetails: 'Sie erhalten eine Bestätigung per E-Mail oder Telefon mit allen Details der Buchung.',
+    bookingError: 'Fehler beim Senden',
     bookingErrorMessage: 'Beim Senden der Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.',
     close: 'Schließen',
     
     // Footer
+    footerDescription: 'Zwei-Zimmer-Wohnung im Herzen von Meran, 200m von den Thermen entfernt. Ideal für entspannende Aufenthalte in Südtirol.',
+    footerContacts: 'Kontakt',
+    footerLocation: 'Standort',
+    footerInfo: 'Informationen',
+    footerCapacity: '2-4 Personen',
+    footerGarage: 'Garage inklusive',
+    footerLinens: 'Bettwäsche inklusive',
+    footerCopyright: '© 2025 Casa Vitter. Alle Rechte vorbehalten.',
+    footerSubtitle: 'Zwei-Zimmer-Wohnung in Meran - CIN: IT021051B4MKWBY5TU',
     footerRights: 'Alle Rechte vorbehalten.',
     privacyPolicy: 'Datenschutz',
+    privacyPolicyTitle: 'Datenschutzerklärung und Nutzungsbedingungen',
+    locationLabel: 'Standort',
+    cinLabel: 'Identifikationscode',
   },
   
   en: {
@@ -208,20 +284,45 @@ export const translations = {
     
     // About
     aboutTitle: 'The Apartment',
+    aboutSubtitle: 'Casa Vitter',
     aboutDescription: 'Casa Vitter is an elegant apartment located in the heart of Merano, perfect for those who want to experience the city in all its splendor. With large and bright spaces, modern design, and a strategic location, it offers ideal comfort for your vacation.',
+    aboutParagraph1: 'Casa Vitter is a quiet two-room apartment located in the heart of Merano, just 200 meters from the renowned Therme Meran and a few steps from the historic center. A privileged position that combines the tranquility of a residential area with the convenience of services.',
+    aboutParagraph2: 'The apartment, located on the first floor with elevator, consists of a cozy living room with a sofa bed (140x200), fully equipped kitchenette, double bedroom with large wardrobes, bathroom with window, shower and bidet, and a large balcony.',
+    aboutParagraph3: 'Ideal for 2 people, it can comfortably accommodate up to 3 adults and 1 child. The price includes private garage (60m away), bed linen, bath and kitchen linens. The space is completely independent and at your disposal.',
+    centralLocation: 'Central location',
+    garageIncluded: 'Garage included',
+    allInclusive: 'All inclusive',
     apartmentFeatures: 'Apartment Features',
     feature1Title: 'Central Location',
+    feature1Description: 'Casa Vitter is located in the heart of Merano, just 200 meters from the renowned Therme Meran and a few steps from the historic center. A strategic location that allows you to comfortably reach on foot all the main attractions, public transport stops, shops and restaurants of the city.',
     feature1Desc: 'A few steps from the center of Merano, close to shops, restaurants, and main attractions.',
-    feature2Title: 'Spacious Areas',
+    feature2Title: 'Perfect for Families',
+    feature2Description: 'Ideally designed for 2 people, the apartment also adapts perfectly to families or groups up to a maximum of 4 people (3 adults and one child), thanks to the comfortable sofa bed in the living room and the possibility of adding a crib with side rails on request.',
     feature2Desc: 'Over 90 sqm of comfort with spacious rooms, fully equipped kitchen, and panoramic balcony.',
-    feature3Title: 'Modern Design',
+    feature3Title: 'Equipped Kitchen',
+    feature3Description: 'The kitchenette is fully equipped with everything you need to prepare your meals: refrigerator, stove, oven, microwave, coffee maker and dishes. Perfect for those who want to feel at home even on vacation and enjoy the local products of South Tyrol.',
     feature3Desc: 'Contemporary furnishings and high-quality finishes for an unforgettable stay.',
-    feature4Title: 'Private Garage',
+    feature4Title: 'All Inclusive',
+    feature4Description: 'Bed, bath and kitchen linens are included in the price. The apartment is completely independent and at your complete disposal, ensuring privacy and comfort throughout your stay in Merano in a quiet residential building.',
     feature4Desc: 'Covered parking included for your convenience and security.',
+    feature5Title: 'Services Nearby',
+    feature5Description: 'In the immediate vicinity of Casa Vitter you will find supermarkets and grocery stores, bars, restaurants, pizzerias, a shopping center and everything you need for a carefree and relaxing stay. The tranquility of the residential area combined with the convenience of services.',
+    feature6Title: 'Comfortable Spaces',
+    feature6Description: 'The apartment on the first floor with elevator consists of a cozy living room with sofa bed (140x200), double bedroom with large wardrobes, bathroom with window, shower and bidet, and a large balcony to enjoy the mild climate of Merano. Functional spaces designed for maximum comfort.',
+    
+    // Features
+    featuresTitle: 'Features',
+    featuresSubtitle: 'Everything you need for a comfortable stay in the heart of Merano',
+    
+    // Photos
+    photosTitle: 'Photos',
+    photosSubtitle: 'Discover the spaces of Casa Vitter in the heart of Merano',
     
     // Reviews
     reviewsTitle: 'Reviews',
-    reviewsSubtitle: 'What our guests say',
+    reviewsSubtitle: 'Our guests\' satisfaction is our best reference',
+    requestAvailability: 'Request availability',
+    guestLabel: 'Guest Casa Vitter',
     
     // Contact
     contactTitle: 'Contact',
@@ -276,13 +377,26 @@ export const translations = {
     
     // Success/Error
     bookingSuccess: 'Request sent!',
-    bookingSuccessMessage: 'Your booking request has been sent successfully. We will contact you soon to confirm.',
-    bookingError: 'Error',
+    bookingSuccessMessage: 'Thank you for your booking request. We will confirm availability and contact you within 24 hours.',
+    bookingSuccessDetails: 'You will receive a confirmation via email or phone with all the details of the booking.',
+    bookingError: 'Sending error',
     bookingErrorMessage: 'An error occurred while sending the request. Please try again or contact us directly.',
     close: 'Close',
     
     // Footer
+    footerDescription: 'Two-room apartment in the heart of Merano, 200m from the Spa. Ideal for relaxing stays in South Tyrol.',
+    footerContacts: 'Contacts',
+    footerLocation: 'Location',
+    footerInfo: 'Information',
+    footerCapacity: '2-4 people',
+    footerGarage: 'Garage included',
+    footerLinens: 'Linens included',
+    footerCopyright: '© 2025 Casa Vitter. All rights reserved.',
+    footerSubtitle: 'Two-room apartment in Merano - CIN: IT021051B4MKWBY5TU',
     footerRights: 'All rights reserved.',
     privacyPolicy: 'Privacy Policy',
+    privacyPolicyTitle: 'Privacy Policy and Terms of Use',
+    locationLabel: 'Location',
+    cinLabel: 'Identification Code',
   },
 };

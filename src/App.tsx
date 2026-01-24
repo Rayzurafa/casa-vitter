@@ -168,38 +168,38 @@ function App() {
   const services = [
     {
       icon: MapPin,
-      title: "Posizione Centrale",
-      description: "Casa Vitter si trova nel cuore di Merano, a soli 200 metri dalle rinomate Terme di Merano e a pochi passi dal centro storico. Una posizione strategica che ti permette di raggiungere comodamente a piedi tutte le principali attrazioni, fermate dei mezzi pubblici, negozi e ristoranti della città.",
+      title: t.feature1Title,
+      description: t.feature1Description,
       image: "/casa_vitter_02.jpg"
     },
     {
       icon: Building2,
-      title: "Spazi Confortevoli",
-      description: "L'appartamento al primo piano con ascensore si compone di un accogliente soggiorno con divano letto a una piazza e mezzo (140x200), camera matrimoniale con ampi armadi, bagno finestrato con doccia e bidet, e un ampio balcone per godere del clima mite meranese. Spazi funzionali pensati per il massimo comfort.",
+      title: t.feature6Title,
+      description: t.feature6Description,
       image: "/casa_vitter_19.jpg"
     },
     {
       icon: Users,
-      title: "Perfetto per Famiglie",
-      description: "Concepito idealmente per 2 persone, l'appartamento si adatta perfettamente anche a famiglie o gruppi fino a un massimo di 4 persone (3 adulti e un bambino), grazie al comodo divano letto del soggiorno e alla possibilità di aggiungere un lettino con sponde per bambini su richiesta.",
+      title: t.feature2Title,
+      description: t.feature2Description,
       image: "/casa_vitter_18.jpg"
     },
     {
       icon: Award,
-      title: "Cucina Attrezzata",
-      description: "L'angolo cucina è completamente attrezzato con tutto il necessario per preparare i vostri pasti: frigorifero, piano cottura, forno, microonde, caffettiera e stoviglie. Perfetto per chi desidera sentirsi a casa anche in vacanza e gustare i prodotti locali dell'Alto Adige.",
+      title: t.feature3Title,
+      description: t.feature3Description,
       image: "/casa_vitter_23.jpg"
     },
     {
       icon: Shield,
-      title: "Tutto Incluso",
-      description: "La biancheria da letto, da bagno e per la cucina sono incluse nel prezzo. L'appartamento è completamente indipendente e a vostra completa disposizione, garantendo privacy e comfort durante tutto il vostro soggiorno a Merano in un condominio tranquillo e silenzioso.",
+      title: t.feature4Title,
+      description: t.feature4Description,
       image: "/casa_vitter_05.jpg"
     },
     {
       icon: Target,
-      title: "Servizi Nelle Vicinanze",
-      description: "Nelle immediate vicinanze di Casa Vitter troverete supermercati e negozi alimentari, bar, ristoranti, pizzerie, un centro commerciale e tutto ciò di cui avete bisogno per un soggiorno spensierato e rilassante. La tranquillità della zona residenziale unita alla comodità dei servizi.",
+      title: t.feature5Title,
+      description: t.feature5Description,
       image: "/merano-fiume.jpg"
     }
   ];
@@ -471,12 +471,12 @@ function App() {
                 </div>
                 
                 <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
-                  Il tuo appartamento ideale<br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span><span className="text-[#5a678f]">nel cuore di Merano</span>
+                  {t.heroTitle}<br className="hidden sm:block" />
+                  <span className="sm:hidden"> </span><span className="text-[#5a678f]">{t.heroSubtitle}</span>
                 </h1>
                 
                 <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
-                  Appartamento elegante e confortevole a soli 200 metri dalle Terme di Merano. Perfetto per una fuga rilassante in Alto Adige.
+                  {t.heroDescription}
                 </p>
 
                 {/* CTA Buttons */}
@@ -485,7 +485,7 @@ function App() {
                     href="#contatti" 
                     className="group bg-[#3f486e] hover:bg-[#5a678f] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center justify-center space-x-2 text-sm sm:text-base"
                   >
-                    <span>Richiedi Disponibilità</span>
+                    <span>{t.bookNow}</span>
                     <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                   <a 
@@ -493,7 +493,7 @@ function App() {
                     className="group bg-[#fd8607] hover:bg-orange-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center justify-center space-x-2 text-sm sm:text-base"
                   >
                     <Phone className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                    <span>Chiamaci</span>
+                    <span>{t.callNow}</span>
                   </a>
                 </div>
               </div>
@@ -506,37 +506,31 @@ function App() {
       <section id="lappartamento" className="py-12 sm:py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4d4d4d] mb-4">L'Appartamento</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4d4d4d] mb-4">{t.aboutTitle}</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto"></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
             <div className="space-y-4 sm:space-y-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#4d4d4d] mb-3 sm:mb-4 md:mb-6">Casa Vitter</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#4d4d4d] mb-3 sm:mb-4 md:mb-6">{t.aboutSubtitle}</h3>
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                Casa Vitter è un silenzioso bilocale situato nel cuore di Merano, a soli 200 metri dalle 
-                rinomate Terme di Merano e a pochi passi dal centro storico. Una posizione privilegiata che 
-                unisce la tranquillità di una zona residenziale alla comodità dei servizi.
+                {t.aboutParagraph1}
               </p>
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                L'appartamento, posizionato al primo piano con ascensore, si compone di un accogliente soggiorno 
-                con divano letto a una piazza e mezzo (140x200), angolo cucina completamente attrezzato, camera 
-                matrimoniale con ampi armadi, bagno finestrato con doccia e bidet, e un ampio balcone.
+                {t.aboutParagraph2}
               </p>
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                Ideale per 2 persone, può ospitare comodamente fino a 3 adulti e 1 bambino. Nel prezzo sono 
-                inclusi garage privato (a 60m), biancheria da letto, da bagno e per la cucina. Lo spazio è 
-                completamente indipendente e a vostra disposizione.
+                {t.aboutParagraph3}
               </p>
               <div className="flex flex-nowrap gap-2 sm:gap-3 pt-4 overflow-x-auto">
                 <div className="bg-[#3f486e] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#5a678f] transition-colors duration-300 whitespace-nowrap">
-                  <span className="font-semibold text-sm sm:text-base">Posizione centrale</span>
+                  <span className="font-semibold text-sm sm:text-base">{t.centralLocation}</span>
                 </div>
                 <div className="bg-[#5a678f] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#3f486e] transition-colors duration-300 whitespace-nowrap">
-                  <span className="font-semibold text-sm sm:text-base">Garage incluso</span>
+                  <span className="font-semibold text-sm sm:text-base">{t.garageIncluded}</span>
                 </div>
                 <div className="bg-[#fd8607] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-orange-600 transition-colors duration-300 whitespace-nowrap">
-                  <span className="font-semibold text-sm sm:text-base">Tutto incluso</span>
+                  <span className="font-semibold text-sm sm:text-base">{t.allInclusive}</span>
                 </div>
               </div>
             </div>
@@ -573,10 +567,10 @@ function App() {
       <section id="caratteristiche" className="py-12 sm:py-20 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4 px-4">Caratteristiche</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4 px-4">{t.featuresTitle}</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
-              Tutto ciò che serve per un soggiorno confortevole nel cuore di Merano
+              {t.featuresSubtitle}
             </p>
           </div>
 
@@ -610,10 +604,10 @@ function App() {
       <section id="foto" className="py-12 sm:py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">Foto</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">{t.photosTitle}</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
-              Scopri gli spazi di Casa Vitter nel cuore di Merano
+              {t.photosSubtitle}
             </p>
           </div>
 
@@ -648,7 +642,7 @@ function App() {
               href="#contatti"
               className="group bg-[#3f486e] hover:bg-[#5a678f] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center space-x-2 hover:shadow-lg transform hover:scale-105 text-sm sm:text-base"
             >
-              <span>Richiedi disponibilità</span>
+              <span>{t.requestAvailability}</span>
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
           </div>
@@ -659,10 +653,10 @@ function App() {
       <section id="recensioni" className="py-12 sm:py-20 bg-[#3f486e] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 px-4">Recensioni</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 px-4">{t.reviewsTitle}</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#5a678f] to-[#fd8607] mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4">
-              La soddisfazione dei nostri ospiti è la nostra migliore referenza
+              {t.reviewsSubtitle}
             </p>
           </div>
 
@@ -686,7 +680,7 @@ function App() {
                   </div>
                   <div>
                     <p className="text-sm sm:text-base font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">{testimonial.name}</p>
-                    <p className="text-xs sm:text-sm text-gray-600 group-hover:text-white/80 transition-colors duration-300">Ospite Casa Vitter</p>
+                    <p className="text-xs sm:text-sm text-gray-600 group-hover:text-white/80 transition-colors duration-300">{t.guestLabel}</p>
                   </div>
                 </div>
               </div>
@@ -699,10 +693,10 @@ function App() {
       <section id="contatti" className="py-12 sm:py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">Contattaci</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#4d4d4d] mb-4">{t.contactTitle}</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#3f486e] to-[#5a678f] mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
-              Per informazioni su disponibilità e prenotazioni, contattaci
+              {t.contactSubtitle}
             </p>
           </div>
 
@@ -711,14 +705,14 @@ function App() {
           <div className="grid lg:grid-cols-7 gap-6 sm:gap-8 items-stretch mb-8 sm:mb-12">
             {/* Informazioni di Contatto - Sinistra (3/7 dello spazio) */}
             <div className="lg:col-span-3">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#4d4d4d] mb-4 sm:mb-6">Come contattarci</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#4d4d4d] mb-4 sm:mb-6">{t.contactInfoTitle}</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300 group">
                   <div className="bg-[#3f486e] w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-[#5a678f] transition-colors duration-300">
                     <Phone className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">Telefono</h4>
+                    <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">{t.phoneLabel}</h4>
                     <a href="tel:+393332109899" className="text-gray-600 hover:text-[#3f486e] transition-colors duration-300 text-sm sm:text-base font-medium">
                       +39 333 210 9899
                     </a>
@@ -742,7 +736,7 @@ function App() {
                     <MapPin className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">Ubicazione</h4>
+                    <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">{t.locationLabel}</h4>
                     <address className="text-gray-600 not-italic text-sm sm:text-base font-medium">
                       Via Leopardi 7, 39012 Merano (BZ)
                     </address>
@@ -754,7 +748,7 @@ function App() {
                     <FileText className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">Codice Identificativo</h4>
+                    <h4 className="text-sm sm:text-base font-semibold text-[#4d4d4d] mb-1">{t.cinLabel}</h4>
                     <p className="text-gray-600 text-sm sm:text-base font-medium">
                       IT021051B4MKWBY5TU
                     </p>
@@ -767,10 +761,10 @@ function App() {
             <div className="lg:col-span-2">
               <div className="bg-gradient-to-r from-[#3f486e] to-[#5a678f] p-6 rounded-2xl shadow-xl text-white h-full flex flex-col justify-center">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">
-                  Prenota il tuo soggiorno
+                  {t.bookYourStay}
                 </h3>
                 <p className="text-sm sm:text-base mb-4 sm:mb-6 text-white opacity-90">
-                  Verifica la disponibilità e prenota Casa Vitter per il tuo prossimo viaggio a Merano.
+                  {t.bookYourStayDesc}
                 </p>
                 <div className="flex flex-col gap-3">
                   <a
@@ -778,21 +772,21 @@ function App() {
                     className="group bg-[#fd8607] hover:bg-orange-600 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold transition-all duration-300 inline-flex items-center justify-center space-x-2 hover:shadow-lg transform hover:scale-105 text-white text-sm sm:text-base"
                   >
                     <Phone className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                    <span>Chiama ora</span>
+                    <span>{t.callNow}</span>
                   </a>
                   <a
                     href="mailto:casavittermerano@gmail.com"
                     className="group bg-white/20 hover:bg-white/30 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm border border-white/30 hover:border-white/50 inline-flex items-center justify-center space-x-2 text-white text-sm sm:text-base"
                   >
                     <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                    <span>Invia email</span>
+                    <span>{t.sendEmail}</span>
                   </a>
                   <a
                     href="#prenota"
                     className="group bg-white hover:bg-white/90 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold transition-all duration-300 inline-flex items-center justify-center space-x-2 hover:shadow-lg transform hover:scale-105 text-[#3f486e] text-sm sm:text-base"
                   >
                     <Calendar className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                    <span>Prenota ora</span>
+                    <span>{t.bookNowBtn}</span>
                   </a>
                 </div>
               </div>
@@ -802,17 +796,17 @@ function App() {
             <div className="lg:col-span-2">
               <div className="bg-gradient-to-br from-[#3f486e] to-[#5a678f] p-6 rounded-2xl shadow-xl text-white h-full flex flex-col justify-center">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">
-                  Informazioni Utili
+                  {t.usefulInfo}
                 </h3>
                 <div className="space-y-3 text-sm sm:text-base">
                   <p className="text-white/90">
-                    <strong>Tassa di soggiorno:</strong> € 2,20 a notte per persona (sopra i 14 anni), da corrispondere al check-in.
+                    <strong>{t.touristTax}</strong> {t.touristTaxValue}
                   </p>
                   <p className="text-white/90">
-                    <strong>Garage:</strong> Dimensioni max auto 215 x 500 cm
+                    <strong>{t.garage}</strong> {t.garageValue}
                   </p>
                   <p className="text-white/90">
-                    <strong>Check-in/out:</strong> Da concordare al momento della prenotazione
+                    <strong>{t.checkInOut}</strong> {t.checkInOutValue}
                   </p>
                 </div>
               </div>
@@ -842,10 +836,10 @@ function App() {
       <section id="prenota" className="py-12 sm:py-20 bg-gradient-to-br from-[#3f486e] to-[#5a678f] scroll-mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Prenota il Tuo Soggiorno</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">{t.bookingTitle}</h2>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#fd8607] to-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4">
-              {bookingStep === 1 ? 'Seleziona le date e il numero di ospiti per ricevere un\'offerta personalizzata' : 'Completa i tuoi dati per la prenotazione'}
+              {bookingStep === 1 ? t.bookingSubtitle : t.bookingSubtitleStep2}
             </p>
           </div>
 
@@ -969,7 +963,7 @@ function App() {
                     <div>
                       <label htmlFor="checkin" className="block text-sm font-semibold text-[#4d4d4d] mb-2 flex items-center space-x-2">
                         <Calendar className="h-4 w-4 text-[#3f486e]" />
-                        <span>Data Check-in *</span>
+                        <span>{t.checkInDate} *</span>
                       </label>
                       <DatePicker
                         selected={checkIn}
@@ -981,7 +975,7 @@ function App() {
                         excludeDates={blockedDates}
                         locale="it"
                         dateFormat="dd/MM/yyyy"
-                        placeholderText="Seleziona data"
+                        placeholderText={t.selectDate}
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
                         wrapperClassName="w-full"
                         calendarClassName="custom-datepicker"
@@ -990,7 +984,7 @@ function App() {
                     <div>
                       <label htmlFor="checkout" className="block text-sm font-semibold text-[#4d4d4d] mb-2 flex items-center space-x-2">
                         <Calendar className="h-4 w-4 text-[#3f486e]" />
-                        <span>Data Check-out *</span>
+                        <span>{t.checkOutDate} *</span>
                       </label>
                       <DatePicker
                         selected={checkOut}
@@ -1002,7 +996,7 @@ function App() {
                         excludeDates={blockedDates}
                         locale="it"
                         dateFormat="dd/MM/yyyy"
-                        placeholderText="Seleziona data"
+                        placeholderText={t.selectDate}
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
                         wrapperClassName="w-full"
                         calendarClassName="custom-datepicker"
@@ -1014,14 +1008,14 @@ function App() {
                   <div className="border-2 border-gray-200 rounded-xl p-6 space-y-4">
                     <h3 className="text-lg font-semibold text-[#4d4d4d] flex items-center space-x-2">
                       <Users className="h-5 w-5 text-[#3f486e]" />
-                      <span>Ospiti (massimo 4)</span>
+                      <span>{t.guests} (massimo 4)</span>
                     </h3>
 
                     {/* Adulti */}
                     <div className="flex items-center justify-between py-3 border-b border-gray-100">
                       <div>
-                        <p className="font-semibold text-[#4d4d4d]">Adulti</p>
-                        <p className="text-sm text-gray-500">13 anni o più</p>
+                        <p className="font-semibold text-[#4d4d4d]">{t.adults}</p>
+                        <p className="text-sm text-gray-500">{t.adultsDesc}</p>
                       </div>
                       <div className="flex items-center space-x-4">
                         <button
@@ -1047,8 +1041,8 @@ function App() {
                     {/* Bambini */}
                     <div className="flex items-center justify-between py-3 border-b border-gray-100">
                       <div>
-                        <p className="font-semibold text-[#4d4d4d]">Bambini</p>
-                        <p className="text-sm text-gray-500">2-12 anni</p>
+                        <p className="font-semibold text-[#4d4d4d]">{t.children}</p>
+                        <p className="text-sm text-gray-500">{t.childrenDesc}</p>
                       </div>
                       <div className="flex items-center space-x-4">
                         <button
@@ -1074,8 +1068,8 @@ function App() {
                     {/* Neonati */}
                     <div className="flex items-center justify-between py-3">
                       <div>
-                        <p className="font-semibold text-[#4d4d4d]">Neonati</p>
-                        <p className="text-sm text-gray-500">Fino a 2 anni</p>
+                        <p className="font-semibold text-[#4d4d4d]">{t.infants}</p>
+                        <p className="text-sm text-gray-500">{t.infantsDesc}</p>
                       </div>
                       <div className="flex items-center space-x-4">
                         <button
@@ -1105,19 +1099,19 @@ function App() {
                       type="button"
                       onClick={() => {
                         if (!checkIn || !checkOut) {
-                          alert('Per favore, seleziona le date di check-in e check-out');
+                          alert(t.selectDatesAlert);
                           return;
                         }
                         const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
                         if (nights < 3) {
-                          alert('La prenotazione deve essere di almeno 3 notti');
+                          alert(t.minNightsAlert);
                           return;
                         }
                         setBookingStep(2);
                       }}
                       className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
                     >
-                      <span>Continua</span>
+                      <span>{t.continue}</span>
                       <ArrowRight className="h-5 w-5" />
                     </button>
                   </div>
@@ -1130,7 +1124,7 @@ function App() {
                   {/* Dati Personali */}
                   <div>
                     <label htmlFor="nome" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                      Nome e Cognome *
+                      {t.fullName} *
                     </label>
                     <input
                       type="text"
@@ -1138,14 +1132,14 @@ function App() {
                       name="nome"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                      placeholder="Mario Rossi"
+                      placeholder={t.fullNamePlaceholder}
                     />
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                        Email *
+                        {t.email} *
                       </label>
                       <input
                         type="email"
@@ -1153,12 +1147,12 @@ function App() {
                         name="email"
                         required
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                        placeholder="mario.rossi@email.com"
+                        placeholder={t.emailPlaceholder}
                       />
                     </div>
                     <div>
                       <label htmlFor="telefono" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                        Telefono *
+                        {t.phoneLabel} *
                       </label>
                       <input
                         type="tel"
@@ -1166,21 +1160,21 @@ function App() {
                         name="telefono"
                         required
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
-                        placeholder="+39 333 123 4567"
+                        placeholder={t.phonePlaceholder}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="messaggio" className="block text-sm font-semibold text-[#4d4d4d] mb-2">
-                      Messaggio (opzionale)
+                      {t.message}
                     </label>
                     <textarea
                       id="messaggio"
                       name="messaggio"
                       rows={4}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none resize-none"
-                      placeholder="Hai richieste particolari? Faccelo sapere..."
+                      placeholder={t.messagePlaceholder}
                     ></textarea>
                   </div>
 
@@ -1191,19 +1185,19 @@ function App() {
                       onClick={() => setBookingStep(1)}
                       className="flex-1 bg-gray-200 hover:bg-gray-300 text-[#4d4d4d] font-bold py-4 px-8 rounded-xl transition-all duration-300"
                     >
-                      Indietro
+                      {t.back}
                     </button>
                     <button
                       type="submit"
                       className="flex-2 bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
                     >
-                      <span>Invia Richiesta</span>
+                      <span>{t.sendRequest}</span>
                       <ArrowRight className="h-5 w-5" />
                     </button>
                   </div>
 
                   <p className="text-xs text-gray-500 text-center">
-                    * Campi obbligatori. Ti risponderemo entro 24 ore.
+                    {t.requiredFields}
                   </p>
                 </>
               )}
@@ -1224,13 +1218,13 @@ function App() {
                 className="h-12 w-auto mb-3 sm:mb-4"
               />
               <p className="text-gray-400 text-sm leading-relaxed">
-                Bilocale nel cuore di Merano, a 200m dalle Terme. Ideale per soggiorni rilassanti in Alto Adige.
+                {t.footerDescription}
               </p>
             </div>
 
             {/* Contatti */}
             <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[#5a678f]">Contatti</h4>
+              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[#5a678f]">{t.footerContacts}</h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-4 w-4 text-[#5a678f]" />
@@ -1249,7 +1243,7 @@ function App() {
 
             {/* Posizione */}
             <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[#5a678f]">Posizione</h4>
+              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[#5a678f]">{t.footerLocation}</h4>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-[#5a678f] mt-1" />
                 <address className="text-gray-300 not-italic text-sm">
@@ -1261,11 +1255,11 @@ function App() {
 
             {/* Info */}
             <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[#5a678f]">Informazioni</h4>
+              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[#5a678f]">{t.footerInfo}</h4>
               <div className="text-gray-300 text-sm space-y-2">
-                <p>• 2-4 persone</p>
-                <p>• Garage incluso</p>
-                <p>• Biancheria inclusa</p>
+                <p>• {t.footerCapacity}</p>
+                <p>• {t.footerGarage}</p>
+                <p>• {t.footerLinens}</p>
                 <p>CIN: IT021051B4MKWBY5TU</p>
               </div>
             </div>
@@ -1275,17 +1269,17 @@ function App() {
           <div className="border-t border-gray-800 pt-6 sm:pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-4 md:mb-0 text-center md:text-left">
-                © 2025 Casa Vitter. Tutti i diritti riservati.
+                {t.footerCopyright}
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                 <p className="text-xs text-gray-500 text-center md:text-right">
-                  Bilocale a Merano - CIN: IT021051B4MKWBY5TU
+                  {t.footerSubtitle}
                 </p>
                 <button
                   onClick={() => setShowPrivacyPolicy(true)}
                   className="text-xs text-gray-400 hover:text-[#5a678f] transition-colors duration-300 underline"
                 >
-                  Privacy Policy
+                  {t.privacyPolicy}
                 </button>
               </div>
             </div>
@@ -1319,7 +1313,7 @@ function App() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
             <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center rounded-t-2xl">
-              <h2 className="text-2xl font-bold text-[#4d4d4d]">Privacy Policy e Termini di Utilizzo</h2>
+              <h2 className="text-2xl font-bold text-[#4d4d4d]">{t.privacyPolicyTitle}</h2>
               <button
                 onClick={() => setShowPrivacyPolicy(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-300"
@@ -1475,20 +1469,20 @@ function App() {
               <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
                 <CheckCircle className="h-10 w-10 text-green-600" />
               </div>
-              <h3 className="text-2xl font-bold text-[#4d4d4d] mb-4">Richiesta Inviata!</h3>
+              <h3 className="text-2xl font-bold text-[#4d4d4d] mb-4">{t.bookingSuccess}</h3>
               <p className="text-gray-600 mb-6">
-                Grazie per la tua richiesta di prenotazione. Confermeremo la disponibilità e ti contatteremo entro 24 ore.
+                {t.bookingSuccessMessage}
               </p>
               <div className="bg-[#3f486e]/10 rounded-xl p-4 mb-6">
                 <p className="text-sm text-[#4d4d4d] font-medium">
-                  Riceverai una conferma via email o telefono con tutti i dettagli della prenotazione.
+                  {t.bookingSuccessDetails}
                 </p>
               </div>
               <button
                 onClick={() => setShowBookingConfirmation(false)}
                 className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
-                Chiudi
+                {t.close}
               </button>
             </div>
           </div>
@@ -1503,9 +1497,9 @@ function App() {
               <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
                 <X className="h-10 w-10 text-red-600" />
               </div>
-              <h3 className="text-2xl font-bold text-[#4d4d4d] mb-4">Errore nell'invio</h3>
+              <h3 className="text-2xl font-bold text-[#4d4d4d] mb-4">{t.bookingError}</h3>
               <p className="text-gray-600 mb-6">
-                Si è verificato un errore durante l'invio della richiesta. Per favore riprova o contattaci direttamente.
+                {t.bookingErrorMessage}
               </p>
               <div className="bg-[#3f486e]/10 rounded-xl p-4 mb-6 space-y-2">
                 <div className="flex items-center justify-center space-x-2 text-[#4d4d4d]">
@@ -1521,7 +1515,7 @@ function App() {
                 onClick={() => setShowBookingError(false)}
                 className="w-full bg-gradient-to-r from-[#3f486e] to-[#5a678f] hover:from-[#5a678f] hover:to-[#3f486e] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
-                Chiudi
+                {t.close}
               </button>
             </div>
           </div>
