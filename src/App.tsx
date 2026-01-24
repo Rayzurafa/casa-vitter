@@ -953,6 +953,13 @@ function App() {
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
                         wrapperClassName="w-full"
                         calendarClassName="custom-datepicker"
+                        dayClassName={(date) => {
+                          const today = new Date();
+                          const isToday = date.getDate() === today.getDate() && 
+                                         date.getMonth() === today.getMonth() && 
+                                         date.getFullYear() === today.getFullYear();
+                          return isToday ? 'react-datepicker__day--today' : undefined;
+                        }}
                       />
                     </div>
                     <div>
@@ -974,6 +981,13 @@ function App() {
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#3f486e] focus:ring-2 focus:ring-[#3f486e]/20 transition-all duration-300 outline-none"
                         wrapperClassName="w-full"
                         calendarClassName="custom-datepicker"
+                        dayClassName={(date) => {
+                          const today = new Date();
+                          const isToday = date.getDate() === today.getDate() && 
+                                         date.getMonth() === today.getMonth() && 
+                                         date.getFullYear() === today.getFullYear();
+                          return isToday ? 'react-datepicker__day--today' : undefined;
+                        }}
                       />
                     </div>
                   </div>
