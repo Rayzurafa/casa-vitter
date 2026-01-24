@@ -60,9 +60,9 @@ export const translations = {
     
     // Contact
     contactTitle: 'Contatti',
-    contactSubtitle: 'Siamo qui per aiutarti',
+    contactSubtitle: 'Per informazioni su disponibilità e prenotazioni, contattaci',
     contactDescription: 'Hai domande o vuoi maggiori informazioni? Contattaci e saremo felici di risponderti.',
-    contactInfoTitle: 'Informazioni di Contatto',
+    contactInfoTitle: 'Come contattarci',
     phone: 'Telefono',
     email: 'Email',
     address: 'Indirizzo',
@@ -193,9 +193,9 @@ export const translations = {
     
     // Contact
     contactTitle: 'Kontakt',
-    contactSubtitle: 'Wir sind hier, um zu helfen',
+    contactSubtitle: 'Für Informationen zu Verfügbarkeit und Buchungen kontaktieren Sie uns',
     contactDescription: 'Haben Sie Fragen oder möchten Sie weitere Informationen? Kontaktieren Sie uns und wir helfen Ihnen gerne weiter.',
-    contactInfoTitle: 'Kontaktinformationen',
+    contactInfoTitle: 'Wie Sie uns kontaktieren',
     phone: 'Telefon',
     email: 'E-Mail',
     address: 'Adresse',
@@ -326,9 +326,9 @@ export const translations = {
     
     // Contact
     contactTitle: 'Contact',
-    contactSubtitle: 'We are here to help',
+    contactSubtitle: 'For information on availability and bookings, contact us',
     contactDescription: 'Have questions or want more information? Contact us and we\'ll be happy to answer.',
-    contactInfoTitle: 'Contact Information',
+    contactInfoTitle: 'How to contact us',
     phone: 'Phone',
     email: 'Email',
     address: 'Address',
