@@ -319,7 +319,7 @@ function App() {
                         : 'text-gray-600 hover:text-[#3f486e]'
                     }`}
                   >
-                    {lang.toUpperCase()}
+                    {lang === 'it' ? '🇮🇹' : lang === 'de' ? '🇩🇪' : '🇬🇧'}
                   </button>
                 ))}
               </div>
@@ -358,7 +358,7 @@ function App() {
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    {lang.toUpperCase()}
+                    {lang === 'it' ? '🇮🇹' : lang === 'de' ? '🇩🇪' : '🇬🇧'}
                   </button>
                 ))}
               </div>
