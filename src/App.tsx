@@ -245,53 +245,11 @@ function App() {
     "/casa_vitter_48.jpg"
   ];
 
-  const testimonials = [
-    {
-      name: "Enrico",
-      text: "Casa pulitissima, ubicata in posizione strategica per muoversi tranquillamente a piedi. Le indicazioni fornite da Lara sono state precisissime. La comunicazione è stata puntuale e piacevole, il check-in gestito al meglio anche se la prenotazione è stata fatta a meno di 24 ore dall'arrivo. L'alloggio è confortevole e completo di tutto, un'ottima base per visitare Merano e dintorni.",
-      rating: 5
-    },
-    {
-      name: "Beatrice",
-      text: "Ci siamo trovati benissimo, dal check-in di persona alla partenza. Posizione ottima, è tutto raggiungibile a piedi, inoltre la fermata dei bus è a 5 minuti. L'appartamento è come da descrizione, fornito di tutto il necessario. Ivan è rimasto sempre a disposizione, comunicazione gentile, efficace e veloce. Grazie mille ancora di tutto!",
-      rating: 5
-    },
-    {
-      name: "Tiziana",
-      text: "Ivan è stato un host fantastico! Super accomodante e molto disponibile sotto ogni aspetto. Il suo appartamento era perfetto, ben attrezzato e molto confortevole. La posizione è ideale perché è molto vicino al centro della città, ma in un quartiere molto tranquillo. Consiglierei l'alloggio di Ivan a qualsiasi coppia o giovane famiglia in visita a Merano.",
-      rating: 5
-    },
-    {
-      name: "Maria Lucia",
-      text: "Abbiamo prenotato all'ultimo minuto e i proprietari hanno accettato mostrandosi subito disponibili. L'appartamento è ancora più bello e accogliente dal vivo che in foto! La posizione è fantastica a due passi dal centro. La cucina è completa di tutto e i consigli degli host sono stati preziosissimi: ristoranti ottimi e passeggiate perfette per la famiglia.",
-      rating: 5
-    },
-    {
-      name: "Miriam",
-      text: "Abbiamo trascorso una settimana meravigliosa a Merano. L'appartamento si trova in una posizione eccellente, è ben attrezzato e tutto era super preparato. Lara ci ha accolto personalmente e ha risposto a tutte le domande in modo rapido. Da lì si possono fare splendide escursioni a piedi, tutto è raggiungibile senza auto. Grazie per il bel momento, torneremo volentieri!",
-      rating: 5
-    },
-    {
-      name: "Andrea",
-      text: "Appartamento super bello situato in una tranquilla zona residenziale in posizione centrale a Merano, a 5 minuti dal centro. Nelle vicinanze panetterie, supermercati e ristoranti. La camera da letto separata è stata utile per noi come famiglia con bambino piccolo. Lara e Ivan gentilissimi e cortesi, sempre facilmente raggiungibili. Ci torneremo molto volentieri!",
-      rating: 5
-    },
-    {
-      name: "David",
-      text: "Abbiamo trascorso un soggiorno incantevole a Merano. Lara e Ivan sono host fantastici! La comunicazione è stata molto semplice e utile, ci hanno aiutato subito con il garage quando serviva. L'appartamento era ancora più bello che nelle foto e la posizione è semplicemente perfetta! Consiglio vivamente di soggiornare da Lara e Ivan.",
-      rating: 5
-    },
-    {
-      name: "Claudia",
-      text: "Ottimo soggiorno, pulito e confortevole. L'appartamento ha tutto ciò di cui si potrebbe aver bisogno, è soleggiato e a pochi passi dalla Passeggiata e dal centro storico. Il balcone con vista sulle Dolomiti è meraviglioso. Lara ci ha accolto molto cordialmente, rendendo il check-in facile e veloce. Ha risposto rapidamente durante tutto il soggiorno.",
-      rating: 5
-    },
-    {
-      name: "Luca",
-      text: "Bellissima esperienza. La casa è spaziosa e dotata di un bellissimo balcone dove abbiamo fatto colazione e pranzato. Tutto molto curato e pulito. Ci hanno fornito seggiolone, bavaglino, accappatoio e giochi per i bambini. Garage comodo e utile. Ivan e Lara gentili, solari e sempre disponibili. Consigliatissimo. Per un ritorno a Merano sappiamo dove andare!",
-      rating: 5
-    }
-  ];
+  // Get testimonials from translations
+  const testimonials = t.testimonials.map((testimonial, index) => ({
+    ...testimonial,
+    rating: 5
+  }));
 
   return (
     <div className="min-h-screen bg-white">
