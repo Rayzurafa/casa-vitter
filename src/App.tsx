@@ -20,12 +20,14 @@ import {
   Quote,
   Plus,
   Minus,
-  Calendar
+  Calendar,
+  Globe
 } from 'lucide-react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { it } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 import { supabase } from './supabaseClient';
+import { translations, Language } from './translations';
 
 registerLocale('it', it);
 
@@ -106,11 +108,14 @@ function getPriceForDate(date: Date): number {
 }
 
 function App() {
+  const [language, setLanguage] = useState<Language>('it');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showBookingConfirmation, setShowBookingConfirmation] = useState(false);
   const [showBookingError, setShowBookingError] = useState(false);
+  
+  const t = translations[language];
   
   // Booking form states
   const [bookingStep, setBookingStep] = useState(1);
@@ -305,26 +310,69 @@ function App() {
 
             {/* Desktop Navigation - Centered */}
             <nav className="hidden md:flex space-x-8 flex-1 justify-center">
-              {['Home', 'L\'Appartamento', 'Caratteristiche', 'Foto', 'Recensioni', 'Prenota'].map((item, index) => (
-                <a 
-                  key={index}
-                  href={`#${item.toLowerCase().replace(/'/g, '').replace(' ', '-')}`} 
-                  className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 font-medium relative group py-2"
-                >
-                  {item}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3f486e] to-[#5a678f] group-hover:w-full transition-all duration-300"></span>
-                </a>
-              ))}
+              <a 
+                href="#home"
+                className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 font-medium relative group py-2"
+              >
+                {t.home}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3f486e] to-[#5a678f] group-hover:w-full transition-all duration-300"></span>
+              </a>
+              <a 
+                href="#lappartamento"
+                className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 font-medium relative group py-2"
+              >
+                {t.about}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3f486e] to-[#5a678f] group-hover:w-full transition-all duration-300"></span>
+              </a>
+              <a 
+                href="#recensioni"
+                className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 font-medium relative group py-2"
+              >
+                {t.reviews}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3f486e] to-[#5a678f] group-hover:w-full transition-all duration-300"></span>
+              </a>
+              <a 
+                href="#contatti"
+                className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 font-medium relative group py-2"
+              >
+                {t.contact}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3f486e] to-[#5a678f] group-hover:w-full transition-all duration-300"></span>
+              </a>
+              <a 
+                href="#prenota"
+                className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 font-medium relative group py-2"
+              >
+                {t.book}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3f486e] to-[#5a678f] group-hover:w-full transition-all duration-300"></span>
+              </a>
             </nav>
 
-            {/* CTA Button - Desktop */}
-            <div className="hidden md:block">
+            {/* Language Selector + CTA - Desktop */}
+            <div className="hidden md:flex items-center space-x-4">
+              {/* Language Selector */}
+              <div className="flex items-center space-x-2 bg-gray-100 rounded-xl p-1">
+                {(['it', 'de', 'en'] as Language[]).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`px-3 py-1.5 rounded-lg font-medium text-sm transition-all duration-300 ${
+                      language === lang
+                        ? 'bg-white text-[#3f486e] shadow-sm'
+                        : 'text-gray-600 hover:text-[#3f486e]'
+                    }`}
+                  >
+                    {lang.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              
+              {/* CTA Button */}
               <a 
                 href="#prenota" 
                 className="group bg-[#3f486e] hover:bg-[#5a678f] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center space-x-2"
               >
                 <Phone className="h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
-                <span>Prenota</span>
+                <span>{t.book}</span>
               </a>
             </div>
 
@@ -340,17 +388,59 @@ function App() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden pb-4 border-t border-gray-200 animate-in slide-in-from-top duration-300">
-              <nav className="flex flex-col space-y-2 pt-4">
-                {['Home', 'L\'Appartamento', 'Caratteristiche', 'Foto', 'Recensioni', 'Prenota'].map((item, index) => (
-                  <a 
-                    key={index}
-                    href={`#${item.toLowerCase().replace(/'/g, '').replace(' ', '-')}`} 
-                    className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-50"
-                    onClick={() => setIsMenuOpen(false)}
+              {/* Language Selector - Mobile */}
+              <div className="flex justify-center space-x-2 pt-4 pb-2">
+                {(['it', 'de', 'en'] as Language[]).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                      language === lang
+                        ? 'bg-[#3f486e] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
                   >
-                    {item}
-                  </a>
+                    {lang.toUpperCase()}
+                  </button>
                 ))}
+              </div>
+              
+              <nav className="flex flex-col space-y-2 pt-2">
+                <a 
+                  href="#home"
+                  className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t.home}
+                </a>
+                <a 
+                  href="#lappartamento"
+                  className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t.about}
+                </a>
+                <a 
+                  href="#recensioni"
+                  className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t.reviews}
+                </a>
+                <a 
+                  href="#contatti"
+                  className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t.contact}
+                </a>
+                <a 
+                  href="#prenota"
+                  className="text-[#4d4d4d] hover:text-[#3f486e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t.book}
+                </a>
               </nav>
             </div>
           )}
