@@ -313,13 +313,18 @@ function App() {
                   <button
                     key={lang}
                     onClick={() => setLanguage(lang)}
-                    className={`px-3 py-1.5 rounded-lg font-medium text-sm transition-all duration-300 ${
+                    className={`px-3 py-1.5 rounded-lg font-medium text-sm transition-all duration-300 flex items-center ${
                       language === lang
                         ? 'bg-white text-[#3f486e] shadow-sm'
                         : 'text-gray-600 hover:text-[#3f486e]'
                     }`}
                   >
-                    {lang === 'it' ? '🇮🇹' : lang === 'de' ? '🇩🇪' : '🇬🇧'}
+                    <img 
+                      src={`https://flagcdn.com/w20/${lang === 'it' ? 'it' : lang === 'de' ? 'de' : 'gb'}.png`}
+                      srcSet={`https://flagcdn.com/w40/${lang === 'it' ? 'it' : lang === 'de' ? 'de' : 'gb'}.png 2x`}
+                      alt={lang}
+                      className="w-5 h-4"
+                    />
                   </button>
                 ))}
               </div>
@@ -352,13 +357,18 @@ function App() {
                   <button
                     key={lang}
                     onClick={() => setLanguage(lang)}
-                    className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                    className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 flex items-center justify-center ${
                       language === lang
                         ? 'bg-[#3f486e] text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    {lang === 'it' ? '🇮🇹' : lang === 'de' ? '🇩🇪' : '🇬🇧'}
+                    <img 
+                      src={`https://flagcdn.com/w20/${lang === 'it' ? 'it' : lang === 'de' ? 'de' : 'gb'}.png`}
+                      srcSet={`https://flagcdn.com/w40/${lang === 'it' ? 'it' : lang === 'de' ? 'de' : 'gb'}.png 2x`}
+                      alt={lang}
+                      className="w-6 h-5"
+                    />
                   </button>
                 ))}
               </div>
