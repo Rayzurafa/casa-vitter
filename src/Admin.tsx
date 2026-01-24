@@ -138,20 +138,29 @@ function Admin() {
   const handleAcceptRequest = async (request: BookingRequest) => {
     if (!confirm(`Vuoi accettare la prenotazione di ${request.nome}? Le date verranno automaticamente bloccate.`)) return;
 
+    console.log('Attempting to block dates:', {
+      check_in: request.check_in,
+      check_out: request.check_out,
+      note: `Prenotazione di ${request.nome}`
+    });
+
     // 1. Blocca le date
-    const { error: blockError } = await supabase
+    const { data: blockData, error: blockError } = await supabase
       .from('blocked_dates')
       .insert([{
         check_in: request.check_in,
         check_out: request.check_out,
         note: `Prenotazione di ${request.nome}`
-      }]);
+      }])
+      .select();
 
     if (blockError) {
-      alert('Errore durante il blocco delle date. Controlla che non ci siano sovrapposizioni.');
       console.error('Error blocking dates:', blockError);
+      alert(`Errore durante il blocco delle date: ${blockError.message}\n\nDettagli: ${JSON.stringify(blockError)}`);
       return;
     }
+
+    console.log('Dates blocked successfully:', blockData);
 
     // 2. Aggiorna lo status della richiesta
     const { error: updateError } = await supabase
@@ -161,12 +170,13 @@ function Admin() {
 
     if (updateError) {
       console.error('Error updating request:', updateError);
+      alert(`Errore durante l'aggiornamento della richiesta: ${updateError.message}`);
     } else {
       setSuccessMessage('Prenotazione accettata e date bloccate!');
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
-      fetchBookingRequests();
-      fetchBlockedDates();
+      await fetchBookingRequests();
+      await fetchBlockedDates();
     }
   };
 
