@@ -146,8 +146,14 @@ function App() {
         // Espandi ogni range in tutti i giorni compresi
         const allBlockedDates: Date[] = [];
         data.forEach(booking => {
-          const checkIn = new Date(booking.check_in + 'T00:00:00');
-          const checkOut = new Date(booking.check_out + 'T00:00:00');
+          // Parse le date senza conversioni timezone
+          const [checkInYear, checkInMonth, checkInDay] = booking.check_in.split('-').map(Number);
+          const [checkOutYear, checkOutMonth, checkOutDay] = booking.check_out.split('-').map(Number);
+          
+          const checkIn = new Date(checkInYear, checkInMonth - 1, checkInDay);
+          const checkOut = new Date(checkOutYear, checkOutMonth - 1, checkOutDay);
+          
+          console.log(`Blocking from ${checkIn.toLocaleDateString()} to ${checkOut.toLocaleDateString()}`);
           
           // Aggiungi ogni giorno dal check-in al check-out (escluso)
           const currentDate = new Date(checkIn);
