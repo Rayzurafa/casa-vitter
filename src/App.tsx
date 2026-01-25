@@ -522,14 +522,14 @@ function App() {
               <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-[#3f486e]">200m</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Dalle Terme</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{t.fromSpa}</div>
                 </div>
               </div>
               
               <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-[#5a678f]">2-4</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Persone</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{t.people}</div>
                 </div>
               </div>
             </div>

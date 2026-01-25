@@ -44,6 +44,10 @@ export const translations = {
     feature6Title: 'Spazi Confortevoli',
     feature6Description: 'L\'appartamento al primo piano con ascensore si compone di un accogliente soggiorno con divano letto a una piazza e mezzo (140x200), camera matrimoniale con ampi armadi, bagno finestrato con doccia e bidet, e un ampio balcone per godere del clima mite meranese. Spazi funzionali pensati per il massimo comfort.',
     
+    // Stats boxes
+    fromSpa: 'Dalle Terme',
+    people: 'Persone',
+    
     // Features
     featuresTitle: 'Caratteristiche',
     featuresSubtitle: 'Tutto ciò che serve per un soggiorno confortevole nel cuore di Merano',
@@ -215,6 +219,10 @@ export const translations = {
     feature6Title: 'Komfortable Räume',
     feature6Description: 'Die Wohnung im ersten Stock mit Aufzug besteht aus einem gemütlichen Wohnzimmer mit Schlafsofa (140x200), Doppelschlafzimmer mit großen Schränken, Badezimmer mit Fenster, Dusche und Bidet und einem großen Balkon, um das milde Klima von Meran zu genießen. Funktionale Räume für maximalen Komfort.',
     
+    // Stats boxes
+    fromSpa: 'Von den Thermen',
+    people: 'Personen',
+    
     // Features
     featuresTitle: 'Merkmale',
     featuresSubtitle: 'Alles was Sie für einen komfortablen Aufenthalt im Herzen von Meran benötigen',
@@ -385,6 +393,10 @@ export const translations = {
     feature5Description: 'In the immediate vicinity of Casa Vitter you will find supermarkets and grocery stores, bars, restaurants, pizzerias, a shopping center and everything you need for a carefree and relaxing stay. The tranquility of the residential area combined with the convenience of services.',
     feature6Title: 'Comfortable Spaces',
     feature6Description: 'The apartment on the first floor with elevator consists of a cozy living room with sofa bed (140x200), double bedroom with large wardrobes, bathroom with window, shower and bidet, and a large balcony to enjoy the mild climate of Merano. Functional spaces designed for maximum comfort.',
+    
+    // Stats boxes
+    fromSpa: 'From the Spa',
+    people: 'People',
     
     // Features
     featuresTitle: 'Features',
