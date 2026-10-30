@@ -860,8 +860,8 @@ function App() {
                   const { error: supabaseError } = await supabase
                     .from('booking_requests')
                     .insert([{
-                      check_in: checkIn.toISOString().split('T')[0],
-                      check_out: checkOut.toISOString().split('T')[0],
+                      check_in: checkIn.toLocaleDateString('en-CA'),
+                      check_out: checkOut.toLocaleDateString('en-CA'),
                       adulti: adulti,
                       bambini: bambini,
                       neonati: neonati,
